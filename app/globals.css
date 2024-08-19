@@ -31,3 +31,32 @@ body {
     text-wrap: balance;
   }
 }
+
+.landing_container{
+  height: 100vh;
+  text-align: center;
+}
+
+.cpu{
+  background: linear-gradient(to right,#00ff48,#5ff388);
+  color: black;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.landing_page_btn_start{
+  font-size: 1.5rem;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to right,#00bae2,#7be4fc);
+}
+
+.right_arrow {
+  transition: margin-left 0.3s ease;
+}
+
+.landing_page_btn_start:hover .right_arrow {
+  margin-left: 10px;
+  transition: margin-left 0.3s ease;
+}
