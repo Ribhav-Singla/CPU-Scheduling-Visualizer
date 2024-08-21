@@ -24,8 +24,8 @@ function SelectAlgorithm() {
   };
 
   return (
-    <div>
-      <p>CPU Algorithm</p>
+    <div className="pl-5 pt-5">
+      <p className="font-semibold mb-1">CPU Algorithm</p>
       <Select onValueChange={handleSelectChange}>
         <SelectTrigger className="w-[280px]">
           <SelectValue placeholder="Select an algorithm" />

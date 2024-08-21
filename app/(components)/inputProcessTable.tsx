@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { algorithmState } from "../(recoil)/store";
 import { processesState } from "../(recoil)/store";
 import { useRecoilValue, useRecoilState } from "recoil";
@@ -26,7 +25,7 @@ function InputProcessTable() {
   };
 
   return (
-    <div className="max-w-md">
+    <div className="max-w-md 2xl:max-w-lg pl-5 pt-5 pr-5 2xl:pr-0">
       <Table>
         <TableCaption>Input Process Table</TableCaption>
         <TableHeader className="bg-muted/50">
@@ -49,9 +48,7 @@ function InputProcessTable() {
               {process.map((value, subIndex) => (
                 <TableCell key={subIndex}>{value}</TableCell>
               ))}
-              <TableCell>
-                <Button onClick={() => handleRemoveProcess(index)}>-</Button>
-              </TableCell>
+              <TableCell className="font-semibold cursor-pointer hover:text-red-500" onClick={() => handleRemoveProcess(index)}> Remove </TableCell>
             </TableRow>
           ))}
         </TableBody>

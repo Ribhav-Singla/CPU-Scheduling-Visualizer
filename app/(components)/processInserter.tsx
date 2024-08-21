@@ -46,27 +46,37 @@ function ProcessInserter() {
   }
 
   return <div>
-    <div className="process_inserter_container">
-      <div>
-        <label htmlFor="arrival time">Arrival Time</label>
-        <Input type="number" placeholder="AT" className="max-w-24" value={arrivalTime == -1 ? '' : arrivalTime} onChange={(e)=>setArrivalTime(Number(e.target.value))}/>
-      </div>
-      <div>
-        <label htmlFor="burst time">Burst Time</label>
-        <Input type="number" placeholder="BT" className="max-w-24" value={burstTime == -1 ? '' : burstTime} onChange={(e)=>setBurstTime(Number(e.target.value))} />
-      </div>
-      { algorithm === 'priority_preemptive' || algorithm === 'priority_non_preemptive' ?
+    <div className="process_inserter_container pl-5 pt-5">
+
+      <div className="arrival_burst_time_container">
         <div>
-          <label htmlFor="priority">Priority</label>
-          <Input type="number" placeholder="Priority" className="max-w-24" value={priority == -1 ? '' : priority} onChange={(e)=>setPriority(Number(e.target.value))} />
+          <label htmlFor="arrival time" className="font-semibold">Arrival Time</label>
+          <Input type="number" placeholder="AT" className="max-w-24" value={arrivalTime == -1 ? '' : arrivalTime} onChange={(e)=>setArrivalTime(Number(e.target.value))}/>
         </div>
-        : ''
-      }
-      <Button onClick={handleAddProcess}>+</Button>
+        <div>
+          <label htmlFor="burst time" className="font-semibold">Burst Time</label>
+          <Input type="number" placeholder="BT" className="max-w-24" value={burstTime == -1 ? '' : burstTime} onChange={(e)=>setBurstTime(Number(e.target.value))} />
+        </div>
+      </div>
+
+      <div className="priority_container">
+        { algorithm === 'priority_preemptive' || algorithm === 'priority_non_preemptive' ?
+          <div>
+            <label htmlFor="priority" className="font-semibold">Priority</label>
+            <Input type="number" placeholder="Priority" className="max-w-24 " value={priority == -1 ? '' : priority} onChange={(e)=>setPriority(Number(e.target.value))} />
+          </div>
+          : ''
+        }
+      </div>
+
+      <div className="add_process_container">
+        <Button className="add_process_btn" onClick={handleAddProcess}>Add</Button>
+      </div>
+      
     </div>
     { algorithm === 'rr' ?
-      <div>
-        <label htmlFor="time_quantum">Time Quantum</label>
+      <div className="pl-5 pt-5">
+        <label htmlFor="time_quantum" className="font-semibold">Time Quantum</label>
         <Input type="number" placeholder="TQ" className="max-w-28" value={timeQuantum} onChange={(e)=>setTimeQuantum(Number(e.target.value))}/>
       </div>
       : ''
