@@ -46,7 +46,7 @@ function SelectAlgorithm() {
           </SelectItem>
           <SelectItem value="mlq">Multi level Queue</SelectItem>
           <SelectItem value="mlfq">Multi level Feedback Queue</SelectItem>
-          <SelectItem value="rr">Round Robin</SelectItem>
+          <SelectItem value="round_robin">Round Robin</SelectItem>
         </SelectContent>
       </Select>
     </div>

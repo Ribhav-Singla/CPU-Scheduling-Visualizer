@@ -23,7 +23,7 @@ function ProcessInserter() {
     else if(algorithm === 'priority_preemptive' || algorithm === 'priority_non_preemptive'){
       if((arrivalTime!=-1 && burstTime!=-1 && priority!=-1)){
         setProccesses((prev)=>{
-          return [...prev, [arrivalTime,burstTime,priority]];
+          return [...prev, {arrival_time: arrivalTime,burst_time: burstTime,priority : priority}];
         })
         setArrivalTime(-1);
         setBurstTime(-1);
@@ -35,7 +35,7 @@ function ProcessInserter() {
     else{
       if(arrivalTime!=-1 && burstTime!=-1){
         setProccesses((prev)=>{
-          return [...prev, [arrivalTime,burstTime]]
+          return [...prev, { arrival_time: arrivalTime, burst_time: burstTime}]
         })
         setArrivalTime(-1);
         setBurstTime(-1);
@@ -74,7 +74,7 @@ function ProcessInserter() {
       </div>
       
     </div>
-    { algorithm === 'rr' ?
+    { algorithm === 'round_robin' ?
       <div className="pl-5 pt-5">
         <label htmlFor="time_quantum" className="font-semibold">Time Quantum</label>
         <Input type="number" placeholder="TQ" className="max-w-28" value={timeQuantum} onChange={(e)=>setTimeQuantum(Number(e.target.value))}/>

@@ -25,16 +25,16 @@ function InputProcessTable() {
   };
 
   return (
-    <div className="max-w-md 2xl:max-w-lg pl-5 pt-5 pr-5 2xl:pr-0">
+    <div className="max-w-md 2xl:max-w-lg pl-5 pt-5 pr-5 2xl:pr-5">
       <Table>
         <TableCaption>Input Process Table</TableCaption>
         <TableHeader className="bg-muted/50">
           <TableRow>
+            <TableHead>Process ID</TableHead>
             <TableHead>Arrival Time</TableHead>
             <TableHead>Burst Time</TableHead>
             {algorithm === "priority_preemptive" ||
-            algorithm === "priority_non_preemptive" ||
-            (processes && processes[0] && processes[0].length > 2) ? (
+            algorithm === "priority_non_preemptive" ? (
               <TableHead>Priority</TableHead>
             ) : (
               ""
@@ -45,10 +45,23 @@ function InputProcessTable() {
         <TableBody>
           {processes.map((process, index) => (
             <TableRow key={index}>
-              {process.map((value, subIndex) => (
-                <TableCell key={subIndex}>{value}</TableCell>
-              ))}
-              <TableCell className="font-semibold cursor-pointer hover:text-red-500" onClick={() => handleRemoveProcess(index)}> Remove </TableCell>
+              <TableCell>{index}</TableCell>
+              <TableCell>{process.arrival_time}</TableCell>
+              <TableCell>{process.burst_time}</TableCell>
+              {algorithm === "priority_preemptive" ||
+              algorithm === "priority_non_preemptive" ? (
+                //@ts-ignore
+                <TableCell>{process.priority}</TableCell>
+              ) : (
+                ""
+              )}
+              <TableCell
+                className="font-semibold cursor-pointer hover:text-red-500"
+                onClick={() => handleRemoveProcess(index)}
+              >
+                {" "}
+                Remove{" "}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
