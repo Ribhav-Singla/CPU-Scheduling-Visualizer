@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import {round_robin} from './round_robin.js'
 import { NextRequest, NextResponse } from 'next/server';
 
 interface Process {
@@ -8,30 +8,9 @@ interface Process {
 
 export async function POST(req: NextRequest) {
     try {
-        const body = await req.json();        
-        const { time_quantum, n, processes }: { time_quantum:number, n: number, processes: Process[] } = body;
-
-        let input = `${time_quantum}\n`;
-        input += `${n}\n`;
-        processes.forEach((process) => {
-            input += `${process.arrival_time} ${process.burst_time}\n`;
-        });
-
-        // Use a Promise to handle the asynchronous `exec` call
-        const output = await new Promise<string>((resolve, reject) => {
-            const child = exec('"C:/Users/ribha/OneDrive/Desktop/Next App/my-app/app/api/round_robin/round_robin.exe"', (error, stdout, stderr) => {
-                if (error) {
-                    console.log(error);
-                    reject(stderr);
-                } else {
-                    resolve(stdout);
-                }
-            });
-
-            child.stdin?.write(input);
-            child.stdin?.end();
-        });
-
+        const body = await req.json();                
+        const { time_quantum, processes }: { time_quantum:number, processes: Process[] } = body;
+        const output = round_robin(processes,time_quantum);        
         return NextResponse.json({ output }, { status: 200 });
     } catch (error) {
         const err = error as Error;

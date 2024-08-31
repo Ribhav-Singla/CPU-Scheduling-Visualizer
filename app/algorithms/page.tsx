@@ -10,6 +10,8 @@ import { processesState } from "../(recoil)/store";
 import { timeQuantumState } from "../(recoil)/store";
 import { currAlgorithmState } from "../(recoil)/store";
 import { outputProcessesState } from "../(recoil)/store";
+import { ganntChart_processState } from "../(recoil)/store";
+import { ganntChart_startTimeState } from "../(recoil)/store";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 
@@ -19,6 +21,8 @@ export default function () {
   const time_quantum = useRecoilValue(timeQuantumState)
   const currAlgorithm = useSetRecoilState(currAlgorithmState);
   const setOutputProcessesState = useSetRecoilState(outputProcessesState);
+  const setOutputGanntChartProcess = useSetRecoilState(ganntChart_processState);
+  const setOutputGanntChartStartTime = useSetRecoilState(ganntChart_startTimeState);
 
   const handleSubmit = async () => {
     // fcfs algorithm
@@ -26,13 +30,15 @@ export default function () {
       if (processes.length == 0) {
         alert("Please add processes");
       } else {
-        currAlgorithm(algorithm);
+        currAlgorithm(algorithm);        
         try {
           const response = await axios.post("/api/fcfs", {
             n: processes.length,
             processes: processes,
-          });
-          setOutputProcessesState(JSON.parse(response.data.output));
+          });          
+          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputGanntChartProcess(response.data.output.ganntChart_process);
+          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
         } catch (error) {
           console.log("error occured while running fcfs: ", error);
         }
@@ -50,7 +56,9 @@ export default function () {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output));
+          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputGanntChartProcess(response.data.output.ganntChart_process);
+          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
         } catch (error) {
           console.log("error occured while running sjf: ", error);
         }
@@ -68,7 +76,9 @@ export default function () {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output));
+          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputGanntChartProcess(response.data.output.ganntChart_process);
+          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
         } catch (error) {
           console.log("error occured while running sjf: ", error);
         }
@@ -86,7 +96,9 @@ export default function () {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output));
+          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputGanntChartProcess(response.data.output.ganntChart_process);
+          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
         } catch (error) {
           console.log("error occured while running priority: ", error);
         }
@@ -104,7 +116,9 @@ export default function () {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output));
+          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputGanntChartProcess(response.data.output.ganntChart_process);
+          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
         } catch (error) {
           console.log(
             "error occured while running priority non preemptive: ",
@@ -126,7 +140,9 @@ export default function () {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output));
+          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputGanntChartProcess(response.data.output.ganntChart_process);
+          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
         } catch (error) {
           console.log("error occured while running round robin: ", error);
         }

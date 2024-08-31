@@ -15,8 +15,8 @@ import {
 
 function OutputProcessTable() {
   const currAlgorithm = useRecoilValue(currAlgorithmState);
-  const processes = useRecoilValue(outputProcessesState);  
-
+  const processes = useRecoilValue(outputProcessesState);   
+  
   return (
     <div className="max-w-md 2xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
       <Table>

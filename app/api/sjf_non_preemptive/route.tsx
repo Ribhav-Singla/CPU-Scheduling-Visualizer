@@ -1,5 +1,5 @@
-import { exec } from 'child_process';
 import { NextRequest, NextResponse } from 'next/server';
+import {sjf_non_preemptive} from './sjf_non_preemptive.js'
 
 interface Process {
     arrival_time: number;
@@ -9,28 +9,8 @@ interface Process {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();        
-        const { n, processes }: { n: number, processes: Process[] } = body;
-
-        let input = `${n}\n`;
-        processes.forEach((process) => {
-            input += `${process.arrival_time} ${process.burst_time}\n`;
-        });
-
-        // Use a Promise to handle the asynchronous `exec` call
-        const output = await new Promise<string>((resolve, reject) => {
-            const child = exec('"C:/Users/ribha/OneDrive/Desktop/Next App/my-app/app/api/sjf_non_preemptive/sjf_non_preemptive.exe"', (error, stdout, stderr) => {
-                if (error) {
-                    console.log(error);
-                    reject(stderr);
-                } else {
-                    resolve(stdout);
-                }
-            });
-
-            child.stdin?.write(input);
-            child.stdin?.end();
-        });
-
+        const { processes }: { n: number, processes: Process[] } = body;
+        const output = sjf_non_preemptive(processes);
         return NextResponse.json({ output }, { status: 200 });
     } catch (error) {
         const err = error as Error;

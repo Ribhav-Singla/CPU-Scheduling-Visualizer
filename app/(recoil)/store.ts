@@ -50,3 +50,13 @@ export const outputProcessesState = atom<outputProcess[]>({
     key: "outputProcessesState",
     default: []
 })
+
+export const ganntChart_processState = atom({
+    key: "ganntChart_processState",
+    default: []
+})
+
+export const ganntChart_startTimeState = atom({
+    key: "ganntChart_startTimeState",
+    default: []
+})
