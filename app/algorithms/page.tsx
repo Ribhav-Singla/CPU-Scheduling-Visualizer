@@ -15,7 +15,7 @@ import { ganntChart_startTimeState } from "../(recoil)/store";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 
-export default function () {
+export default function Algorithm() {
   const algorithm = useRecoilValue(algorithmState);
   const processes = useRecoilValue(processesState);
   const time_quantum = useRecoilValue(timeQuantumState)
