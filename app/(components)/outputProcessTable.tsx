@@ -2,6 +2,8 @@
 import React from "react";
 import { currAlgorithmState } from "../(recoil)/store";
 import { outputProcessesState } from "../(recoil)/store";
+import { average_waiting_time } from "../(recoil)/store";
+import { average_turnaround_time } from "../(recoil)/store";
 import { useRecoilValue } from "recoil";
 import {
   Table,
@@ -15,8 +17,10 @@ import {
 
 function OutputProcessTable() {
   const currAlgorithm = useRecoilValue(currAlgorithmState);
-  const processes = useRecoilValue(outputProcessesState);   
-  
+  const processes = useRecoilValue(outputProcessesState);
+  const averageTurnaroundTime = useRecoilValue(average_turnaround_time);
+  const averageWaitingTime = useRecoilValue(average_waiting_time);
+
   return (
     <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
       <Table>
@@ -57,6 +61,15 @@ function OutputProcessTable() {
           ))}
         </TableBody>
       </Table>
+      <br />
+      <div className="flex justify-evenly px-1">
+        <div>
+          <p className="font-semibold">Average Turnaround Time: {averageTurnaroundTime}</p>
+        </div>
+        <div>
+          <p className="font-semibold">Average Waiting Time: {averageWaitingTime}</p>
+        </div>
+      </div>
     </div>
   );
 }

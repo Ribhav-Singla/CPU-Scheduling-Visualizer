@@ -223,11 +223,24 @@ export function priority_preemptive(processes_array) {
         time: info[2]
     }));
 
+    // Computing the average turnaround_time and waiting_time
+    let total_turnaround_time = 0;
+    let total_waiting_time = 0;
+    for (let i = 0; i < n; ++i) {
+        total_turnaround_time += processes[i].turnaround_time;
+        total_waiting_time += processes[i].waiting_time;
+    }
+
+    const average_turnaround_time = (total_turnaround_time / n).toFixed(2);
+    const average_waiting_time = (total_waiting_time / n).toFixed(2);
+
     const process_output = outputAsJSON(processes);
 
     return {
         ganntChart_process,
         ganntChart_startTime,
+        average_turnaround_time,
+        average_waiting_time,
         process_output
     };
 }

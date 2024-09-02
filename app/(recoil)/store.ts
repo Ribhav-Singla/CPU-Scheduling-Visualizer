@@ -60,3 +60,13 @@ export const ganntChart_startTimeState = atom({
     key: "ganntChart_startTimeState",
     default: []
 })
+
+export const average_turnaround_time = atom({
+    key: "average_turnaround_timeState",
+    default: 0
+})
+
+export const average_waiting_time = atom({
+    key: "average_waiting_timeState",
+    default: 0
+})

@@ -12,6 +12,8 @@ import { currAlgorithmState } from "../(recoil)/store";
 import { outputProcessesState } from "../(recoil)/store";
 import { ganntChart_processState } from "../(recoil)/store";
 import { ganntChart_startTimeState } from "../(recoil)/store";
+import { average_turnaround_time } from "../(recoil)/store";
+import { average_waiting_time } from "../(recoil)/store";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 
@@ -23,6 +25,8 @@ export default function Algorithm() {
   const setOutputProcessesState = useSetRecoilState(outputProcessesState);
   const setOutputGanntChartProcess = useSetRecoilState(ganntChart_processState);
   const setOutputGanntChartStartTime = useSetRecoilState(ganntChart_startTimeState);
+  const setAverageTurnaroundTime = useSetRecoilState(average_turnaround_time);
+  const setAverageWaitingTime = useSetRecoilState(average_waiting_time);
 
   const handleSubmit = async () => {
     // fcfs algorithm
@@ -39,6 +43,8 @@ export default function Algorithm() {
           setOutputProcessesState(JSON.parse(response.data.output.process_output));
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
           setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
+          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running fcfs: ", error);
         }
@@ -59,6 +65,8 @@ export default function Algorithm() {
           setOutputProcessesState(JSON.parse(response.data.output.process_output));
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
           setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
+          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running sjf: ", error);
         }
@@ -79,6 +87,8 @@ export default function Algorithm() {
           setOutputProcessesState(JSON.parse(response.data.output.process_output));
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
           setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
+          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running sjf: ", error);
         }
@@ -99,6 +109,8 @@ export default function Algorithm() {
           setOutputProcessesState(JSON.parse(response.data.output.process_output));
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
           setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
+          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running priority: ", error);
         }
@@ -119,6 +131,8 @@ export default function Algorithm() {
           setOutputProcessesState(JSON.parse(response.data.output.process_output));
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
           setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
+          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log(
             "error occured while running priority non preemptive: ",
@@ -143,6 +157,8 @@ export default function Algorithm() {
           setOutputProcessesState(JSON.parse(response.data.output.process_output));
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
           setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
+          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running round robin: ", error);
         }

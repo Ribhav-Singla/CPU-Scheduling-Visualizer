@@ -151,11 +151,16 @@ export function priority_non_preemptive(processes_array) {
         total_waiting_time += processes[i].waiting_time;
     }
 
+    const average_turnaround_time = (total_turnaround_time / n).toFixed(2);
+    const average_waiting_time = (total_waiting_time / n).toFixed(2);
+
     const process_output = outputAsJSON(processes);
     
     return {
         ganntChart_process,
         ganntChart_startTime,
+        average_turnaround_time,
+        average_waiting_time,
         process_output
     }
 }
