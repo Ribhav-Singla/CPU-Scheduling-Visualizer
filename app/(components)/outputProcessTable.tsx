@@ -18,7 +18,7 @@ function OutputProcessTable() {
   const processes = useRecoilValue(outputProcessesState);   
   
   return (
-    <div className="max-w-md 2xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
+    <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
       <Table>
         <TableCaption>Output Process Table</TableCaption>
         <TableHeader className="bg-muted/50">

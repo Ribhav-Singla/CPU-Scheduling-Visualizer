@@ -68,14 +68,19 @@
   }
 }
 
+.landing_page_cont{
+  background-color: rgb(238, 238, 238);
+  height: 100vh;
+}
+
 .cpu{
-  background: linear-gradient(to right,#0ae448,#5df488);
+  background: linear-gradient(to right,#12acee,#5df488);
   padding: 10px;
   border-radius: 20px;
 }
 
 .cpu_schedular{
-  background: linear-gradient(to right,#0ae448,#5df488);
+  background: linear-gradient(to right,#12acee,#5df488);
   padding: 5px;
   border-radius: 5px;
 }
@@ -101,6 +106,26 @@
   align-items: center;
   gap: 20px;
 }
+
+.ganntChart {
+  width: 800px;
+  overflow-x: auto; 
+}
+
+.ganntChart .flex {
+  min-width: max-content; 
+}
+
+.landing_page_btn_start{
+  background: linear-gradient(to right,#12acee,#5df488);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+ul{
+  list-style: disc;
+}
+
 
 @media screen  and (max-width: 1280px) {
   .process_inserter_container{

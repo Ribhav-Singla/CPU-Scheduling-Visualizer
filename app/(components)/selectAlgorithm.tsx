@@ -44,8 +44,6 @@ function SelectAlgorithm() {
           <SelectItem value="priority_non_preemptive">
             Priority Scheduling Non Preemptive
           </SelectItem>
-          <SelectItem value="mlq">Multi level Queue</SelectItem>
-          <SelectItem value="mlfq">Multi level Feedback Queue</SelectItem>
           <SelectItem value="round_robin">Round Robin</SelectItem>
         </SelectContent>
       </Select>
