@@ -78,11 +78,11 @@ export function round_robin(processes_array,time_quantum) {
     processes.sort(cmp);
 
     const ganntChart_process = [];
-    let time = 0;
+    let time = processes[0].arrival_time;
     let j = 1;
     const q = [];
     q.push(0);
-    let initial_time = 0;
+    let initial_time = time;
     const ganntChart_startTime = initial_time;
 
     while (q.length > 0) {
