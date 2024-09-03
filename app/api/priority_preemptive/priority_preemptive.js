@@ -56,6 +56,7 @@ function outputAsJSON(processes) {
         output += `"process_id":${processes[i].process_id},`;
         output += `"arrival_time":${processes[i].arrival_time},`;
         output += `"burst_time":${processes[i].burst_time},`;
+        output += `"priority":${processes[i].priority},`;
         output += `"completion_time":${processes[i].completion_time},`;
         output += `"turnaround_time":${processes[i].turnaround_time},`;
         output += `"waiting_time":${processes[i].waiting_time}`;
