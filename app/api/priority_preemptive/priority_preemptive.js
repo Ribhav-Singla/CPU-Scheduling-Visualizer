@@ -169,7 +169,7 @@ export function priority_preemptive(processes_array) {
     processes.sort(cmp);
 
     const pq = new MinHeap();
-    let time = 0;
+    let time = processes[0].arrival_time;
     let j = 1;
     const ganttChartInfo = [];
     let initial_time = processes[0].arrival_time;
