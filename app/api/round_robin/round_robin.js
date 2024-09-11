@@ -36,9 +36,9 @@ class Process {
 
 function cmp(p1, p2) {
     if (p1.arrival_time === p2.arrival_time) {
-        return p1.burst_time < p2.burst_time;
+        return p1.burst_time - p2.burst_time;
     } else {
-        return p1.arrival_time < p2.arrival_time;
+        return p1.arrival_time - p2.arrival_time;
     }
 }
 
@@ -72,7 +72,7 @@ export function round_robin(processes_array,time_quantum) {
         const arrival_time = processes_array[i].arrival_time;
         const burst_time = processes_array[i].burst_time;
         processes.push(new Process(i, arrival_time, burst_time));
-    }
+    }   
 
     // Sort the processes based on arrival time
     processes.sort(cmp);
