@@ -38,12 +38,12 @@ class Process {
 function cmp(p1, p2) {
     if (p1.arrival_time === p2.arrival_time) {
         if (p1.priority === p2.priority) {
-            return p1.burst_time < p2.burst_time;
+            return p1.burst_time - p2.burst_time;
         } else {
-            return p1.priority < p2.priority;
+            return p1.priority - p2.priority;
         }
     } else {
-        return p1.arrival_time < p2.arrival_time;
+        return p1.arrival_time - p2.arrival_time;
     }
 }
 
