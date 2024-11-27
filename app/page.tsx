@@ -6,18 +6,14 @@ export default function Home() {
   return (
     <>
       <div className="landing_page_cont">
-        <div className="flex flex-col justify-center items-center landing_container">
+        <div className="flex flex-col justify-center items-center landing_container pt-10">
           <motion.h1
-            initial={{
-              opacity: 0,
-            }}
+            initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
-              transition: {
-                delay: 0.5,
-              },
+              transition: { delay: 0.5 },
             }}
-            className="landing_page_title font-bold text-[2.9rem] sm:text-[5rem] p-10 w-fit text-center"
+            className="landing_page_title font-extrabold text-4xl md:text-5xl lg:text-6xl xl:text-7xl p-5 w-full text-center"
           >
             <span className="cpu">CPU</span> Scheduling Visualizer
           </motion.h1>
@@ -35,9 +31,10 @@ export default function Home() {
             transition={{
               duration: 0.5,
             }}
+            className="mt-5"
           >
             <Link
-              href={"/algorithms"}
+              href="/algorithms"
               className="landing_page_btn_start font-bold text-lg"
             >
               Get started <span className="right_arrow">&#8594;</span>
@@ -45,57 +42,53 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <div className="flex gap-10 mt-20">
-          <div className="text-justify border-e-2 border-black p-12">
-            <ul>
-              <li>
-                <strong>First-Come, First-Served (FCFS):</strong> Processes are
-                executed in the order they arrive, with no preemption. Once a
-                process starts, it runs to completion. This is the simplest
-                scheduling algorithm.
-              </li>
-              <br />
-              <li>
-                <strong>Shortest Job First (SJF) Preemptive:</strong> Also known
-                as Shortest Remaining Time First (SRTF). The process with the
-                shortest remaining execution time is selected next. If a new
-                process arrives with a shorter burst time, the current process
-                is preempted.
-              </li>
-              <br />
-              <li>
-                <strong>Shortest Job First (SJF) Non-Preemptive:</strong> The
-                process with the shortest burst time is selected and runs to
-                completion before the next process is chosen. Once a process
-                starts, it is not preempted until it finishes.
-              </li>
-            </ul>
-          </div>
-          <div className="text-justify pe-10 py-12">
-            <ul>
-              <li>
-                <strong>Priority Scheduling (Preemptive):</strong> Processes are
-                assigned a priority, and the CPU is allocated to the process
-                with the highest priority. If a new process with a higher
-                priority arrives, it preempts the current process.
-              </li>
-              <br />
-              <li>
-                <strong>Priority Scheduling (Non-Preemptive):</strong> Similar
-                to preemptive priority scheduling, but once a process starts, it
-                runs to completion, regardless of any higher-priority processes
-                that may arrive.
-              </li>
-              <br />
-              <li>
-                <strong>Round Robin (RR):</strong> Each process is assigned a
-                fixed time quantum. The CPU cycles through the processes in a
-                circular order, giving each process a turn. If a process doesn’t
-                complete within its time quantum, it is placed back in the queue
-                to await its next turn.
-              </li>
-            </ul>
-          </div>
+        <div
+          className="p-2 sm:p-5 md:p-8 lg:p-12 xl:p-16 mt-16 md:mt-20 grid grid-cols-1 lg:grid-cols-2 text-justify gap-x-12 gap-y-5"
+          style={{ backgroundColor: "rgb(238, 238, 238)" }}
+        >
+          {[
+            {
+              title: "First-Come, First-Served (FCFS):",
+              description:
+                "Processes are executed in the order they arrive, with no preemption. Once a process starts, it runs to completion. This is the simplest scheduling algorithm.",
+            },
+            {
+              title: "Priority Scheduling (Preemptive):",
+              description:
+                "Processes are assigned a priority, and the CPU is allocated to the process with the highest priority. If a new process with a higher priority arrives, it preempts the current process.",
+            },
+            {
+              title: "Shortest Job First (SJF) Preemptive:",
+              description:
+                "Also known as Shortest Remaining Time First (SRTF). The process with the shortest remaining execution time is selected next. If a new process arrives with a shorter burst time, the current process is preempted.",
+            },
+            {
+              title: "Priority Scheduling (Non-Preemptive):",
+              description:
+                "Similar to preemptive priority scheduling, but once a process starts, it runs to completion, regardless of any higher-priority processes that may arrive.",
+            },
+            {
+              title: "Shortest Job First (SJF) Non-Preemptive:",
+              description:
+                "The process with the shortest burst time is selected and runs to completion before the next process is chosen. Once a process starts, it is not preempted until it finishes.",
+            },
+            {
+              title: "Round Robin (RR):",
+              description:
+                "Each process is assigned a fixed time quantum. The CPU cycles through the processes in a circular order, giving each process a turn. If a process doesn’t complete within its time quantum, it is placed back in the queue to await its next turn.",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="col-span-1 px-5 sm:px-8 md:px-4 lg:px-0"
+            >
+              <ul>
+                <li>
+                  <strong>{item.title}</strong> {item.description}
+                </li>
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </>
