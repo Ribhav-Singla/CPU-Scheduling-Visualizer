@@ -20,11 +20,13 @@ import axios from "axios";
 export default function Algorithm() {
   const algorithm = useRecoilValue(algorithmState);
   const processes = useRecoilValue(processesState);
-  const time_quantum = useRecoilValue(timeQuantumState)
+  const time_quantum = useRecoilValue(timeQuantumState);
   const currAlgorithm = useSetRecoilState(currAlgorithmState);
   const setOutputProcessesState = useSetRecoilState(outputProcessesState);
   const setOutputGanntChartProcess = useSetRecoilState(ganntChart_processState);
-  const setOutputGanntChartStartTime = useSetRecoilState(ganntChart_startTimeState);
+  const setOutputGanntChartStartTime = useSetRecoilState(
+    ganntChart_startTimeState
+  );
   const setAverageTurnaroundTime = useSetRecoilState(average_turnaround_time);
   const setAverageWaitingTime = useSetRecoilState(average_waiting_time);
 
@@ -34,16 +36,22 @@ export default function Algorithm() {
       if (processes.length == 0) {
         alert("Please add processes");
       } else {
-        currAlgorithm(algorithm);        
+        currAlgorithm(algorithm);
         try {
           const response = await axios.post("/api/fcfs", {
             n: processes.length,
             processes: processes,
-          });          
-          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          });
+          setOutputProcessesState(
+            JSON.parse(response.data.output.process_output)
+          );
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
-          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
-          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setOutputGanntChartStartTime(
+            response.data.output.ganntChart_startTime
+          );
+          setAverageTurnaroundTime(
+            response.data.output.average_turnaround_time
+          );
           setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running fcfs: ", error);
@@ -62,10 +70,16 @@ export default function Algorithm() {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputProcessesState(
+            JSON.parse(response.data.output.process_output)
+          );
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
-          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
-          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setOutputGanntChartStartTime(
+            response.data.output.ganntChart_startTime
+          );
+          setAverageTurnaroundTime(
+            response.data.output.average_turnaround_time
+          );
           setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running sjf: ", error);
@@ -84,10 +98,16 @@ export default function Algorithm() {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputProcessesState(
+            JSON.parse(response.data.output.process_output)
+          );
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
-          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
-          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setOutputGanntChartStartTime(
+            response.data.output.ganntChart_startTime
+          );
+          setAverageTurnaroundTime(
+            response.data.output.average_turnaround_time
+          );
           setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running sjf: ", error);
@@ -106,10 +126,16 @@ export default function Algorithm() {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputProcessesState(
+            JSON.parse(response.data.output.process_output)
+          );
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
-          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
-          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setOutputGanntChartStartTime(
+            response.data.output.ganntChart_startTime
+          );
+          setAverageTurnaroundTime(
+            response.data.output.average_turnaround_time
+          );
           setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running priority: ", error);
@@ -128,10 +154,16 @@ export default function Algorithm() {
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputProcessesState(
+            JSON.parse(response.data.output.process_output)
+          );
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
-          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
-          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setOutputGanntChartStartTime(
+            response.data.output.ganntChart_startTime
+          );
+          setAverageTurnaroundTime(
+            response.data.output.average_turnaround_time
+          );
           setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log(
@@ -150,14 +182,20 @@ export default function Algorithm() {
         currAlgorithm(algorithm);
         try {
           const response = await axios.post("/api/round_robin", {
-            time_quantum : time_quantum,
+            time_quantum: time_quantum,
             n: processes.length,
             processes: processes,
           });
-          setOutputProcessesState(JSON.parse(response.data.output.process_output));
+          setOutputProcessesState(
+            JSON.parse(response.data.output.process_output)
+          );
           setOutputGanntChartProcess(response.data.output.ganntChart_process);
-          setOutputGanntChartStartTime(response.data.output.ganntChart_startTime);
-          setAverageTurnaroundTime(response.data.output.average_turnaround_time);
+          setOutputGanntChartStartTime(
+            response.data.output.ganntChart_startTime
+          );
+          setAverageTurnaroundTime(
+            response.data.output.average_turnaround_time
+          );
           setAverageWaitingTime(response.data.output.average_waiting_time);
         } catch (error) {
           console.log("error occured while running round robin: ", error);
@@ -168,21 +206,31 @@ export default function Algorithm() {
 
   return (
     <>
-      <div className="grid grid-cols-12 h-screen">
-        <div className="col-span-4">
+      <div className="grid grid-cols-12 h-screen max-w-[1280px] mx-auto bg-white">
+        <div className="col-span-12 xl:col-span-4">
           <div className="pl-5 pt-5 pb-5 bg-blue-50 border-b-2">
             <h1 className="lg:text-[22px] xl:text-[25px] font-bold">
               <span className="cpu_schedular">CPU</span> Scheduling Visualizer
             </h1>
           </div>
-          <SelectAlgorithm />
-          <ProcessInserter />
-          <div className="p-5">
-            <Button onClick={handleSubmit}>Submit</Button>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:flex xl:flex-col">
+            <div>
+              <div>
+                <SelectAlgorithm />
+                <ProcessInserter />
+              </div>
+              <div className="p-5">
+                <Button onClick={handleSubmit}>Submit</Button>
+              </div>
+            </div>
+            <div className="mb-10 lg:mb-0">
+              <InputProcessTable />
+            </div>
           </div>
-          <InputProcessTable />
         </div>
-        <div className="col-span-8 bg-slate-50">
+
+        <div className="col-span-12 xl:col-span-8 bg-slate-50">
           <OutputProcessTable />
           <br />
           <GanttChart />

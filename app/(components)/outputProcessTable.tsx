@@ -22,7 +22,8 @@ function OutputProcessTable() {
   const averageWaitingTime = useRecoilValue(average_waiting_time);
 
   return (
-    <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
+    // <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
+    <div className="pt-5 px-5">
       <Table>
         <TableCaption>Output Process Table</TableCaption>
         <TableHeader className="bg-muted/50">
@@ -62,7 +63,7 @@ function OutputProcessTable() {
         </TableBody>
       </Table>
       <br />
-      <div className="flex justify-evenly px-1">
+      <div className="flex flex-col lg:flex-row justify-evenly items-center px-1 gap-y-2">
         <div>
           <p className="font-semibold">Average Turnaround Time: {averageTurnaroundTime}</p>
         </div>

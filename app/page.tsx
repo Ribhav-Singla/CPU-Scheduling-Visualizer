@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Home() {
   return (
     <>
-      <div className="landing_page_cont">
+      <div className="landing_page_cont max-w-[1280px] w-full mx-auto">
         <div className="flex flex-col justify-center items-center landing_container pt-10">
           <motion.h1
             initial={{ opacity: 0 }}

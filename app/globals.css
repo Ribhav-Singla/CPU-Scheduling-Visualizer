@@ -65,11 +65,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #eeeeee;
   }
 }
 
 .landing_page_cont{
-  background-color: rgb(238, 238, 238);
+  background-color: #eeeeee;
   height: 100vh;
 }
 
@@ -127,7 +128,7 @@ ul{
 }
 
 
-@media screen  and (max-width: 1280px) {
+@media screen  and (max-width: 450px) {
   .process_inserter_container{
     flex-direction: column;
     justify-content: flex-start;

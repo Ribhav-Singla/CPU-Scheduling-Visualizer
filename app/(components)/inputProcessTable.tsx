@@ -25,7 +25,8 @@ function InputProcessTable() {
   };
 
   return (
-    <div className="max-w-md 2xl:max-w-lg pl-5 pt-5 pr-5 2xl:pr-5">
+    // <div className="max-w-md 2xl:max-w-lg pl-5 pt-5 pr-5 2xl:pr-5">
+    <div className="pt-5 px-5">
       <Table>
         <TableCaption>Input Process Table</TableCaption>
         <TableHeader className="bg-muted/50">
