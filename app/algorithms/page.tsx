@@ -206,7 +206,7 @@ export default function Algorithm() {
 
   return (
     <>
-      <div className="grid grid-cols-12 h-screen max-w-[1280px] mx-auto bg-white">
+      <div className="grid grid-cols-12 min-h-screen max-w-[1280px] mx-auto bg-white overflow-hidden">
         <div className="col-span-12 xl:col-span-4">
           <div className="pl-5 pt-5 pb-5 bg-blue-50 border-b-2">
             <h1 className="lg:text-[22px] xl:text-[25px] font-bold">
