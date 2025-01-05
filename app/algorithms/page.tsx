@@ -206,34 +206,36 @@ export default function Algorithm() {
 
   return (
     <>
-      <div className="grid grid-cols-12 min-h-screen max-w-[1280px] mx-auto bg-white overflow-hidden">
-        <div className="col-span-12 xl:col-span-4">
-          <div className="pl-5 pt-5 pb-5 bg-blue-50 border-b-2">
-            <h1 className="lg:text-[22px] xl:text-[25px] font-bold">
-              <span className="cpu_schedular">CPU</span> Scheduling Visualizer
-            </h1>
-          </div>
+      <div className="bg-slate-50">
+        <div className="grid grid-cols-12 min-h-screen max-w-[1280px] mx-auto bg-white overflow-hidden">
+          <div className="col-span-12 xl:col-span-4">
+            <div className="pl-5 pt-5 pb-5 bg-blue-50 border-b-2">
+              <h1 className="lg:text-[22px] xl:text-[25px] font-bold">
+                <span className="cpu_schedular">CPU</span> Scheduling Visualizer
+              </h1>
+            </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:flex xl:flex-col">
-            <div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:flex xl:flex-col">
               <div>
-                <SelectAlgorithm />
-                <ProcessInserter />
+                <div>
+                  <SelectAlgorithm />
+                  <ProcessInserter />
+                </div>
+                <div className="p-5">
+                  <Button onClick={handleSubmit}>Submit</Button>
+                </div>
               </div>
-              <div className="p-5">
-                <Button onClick={handleSubmit}>Submit</Button>
+              <div className="mb-10 lg:mb-0">
+                <InputProcessTable />
               </div>
-            </div>
-            <div className="mb-10 lg:mb-0">
-              <InputProcessTable />
             </div>
           </div>
-        </div>
 
-        <div className="col-span-12 xl:col-span-8 bg-slate-50">
-          <OutputProcessTable />
-          <br />
-          <GanttChart />
+          <div className="col-span-12 xl:col-span-8 bg-slate-50">
+            <OutputProcessTable />
+            <br />
+            <GanttChart />
+          </div>
         </div>
       </div>
     </>
