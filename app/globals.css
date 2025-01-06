@@ -109,13 +109,13 @@
 }
 
 .ganntChart {
-  width: 800px;
+  /* width: 800px; */
   overflow-x: auto; 
 }
 
 .ganntChart .flex {
   min-width: max-content; 
-}
+} 
 
 .landing_page_btn_start{
   background: linear-gradient(to right,#12acee,#5df488);
