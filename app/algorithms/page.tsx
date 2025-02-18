@@ -5,7 +5,7 @@ import SelectAlgorithm from "../(components)/selectAlgorithm";
 import ProcessInserter from "../(components)/processInserter";
 import InputProcessTable from "../(components)/inputProcessTable";
 import OutputProcessTable from "../(components)/outputProcessTable";
-import { algorithmState } from "../(recoil)/store";
+import { algorithmState, lineChartState } from "../(recoil)/store";
 import { processesState } from "../(recoil)/store";
 import { timeQuantumState } from "../(recoil)/store";
 import { currAlgorithmState } from "../(recoil)/store";
@@ -16,6 +16,7 @@ import { average_turnaround_time } from "../(recoil)/store";
 import { average_waiting_time } from "../(recoil)/store";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
+import LineChart from "../(components)/lineChart";
 
 export default function Algorithm() {
   const algorithm = useRecoilValue(algorithmState);
@@ -29,6 +30,7 @@ export default function Algorithm() {
   );
   const setAverageTurnaroundTime = useSetRecoilState(average_turnaround_time);
   const setAverageWaitingTime = useSetRecoilState(average_waiting_time);
+  const setLineChartState = useSetRecoilState(lineChartState);
 
   const handleSubmit = async () => {
     // fcfs algorithm
@@ -204,6 +206,110 @@ export default function Algorithm() {
     }
   };
 
+  const handleComparison = async () => {
+    // first clear the previous line chart data
+    setLineChartState([]);
+
+    if (
+      algorithm === "fcfs" ||
+      algorithm === "sjf_non_preemptive" ||
+      algorithm === "sjf_preemptive" ||
+      algorithm === "round_robin"
+    ) {
+      if (processes.length == 0) {
+        alert("Please add processes for comparison!");
+      } else {
+        try {
+          const fcfs_response = await axios.post("/api/fcfs", {
+            n: processes.length,
+            processes: processes,
+          });
+
+          const rr_response = await axios.post("/api/round_robin", {
+            time_quantum: time_quantum,
+            n: processes.length,
+            processes: processes,
+          });
+
+          const sjf_np_response = await axios.post("/api/sjf_non_preemptive", {
+            n: processes.length,
+            processes: processes,
+          });
+
+          const sjf_p_response = await axios.post("/api/sjf_preemptive", {
+            n: processes.length,
+            processes: processes,
+          });
+
+          setLineChartState([
+            {
+              name: "fcfs",
+              att: fcfs_response.data.output.average_turnaround_time,
+              awt: fcfs_response.data.output.average_waiting_time,
+            },
+            {
+              name: `rr (T=${time_quantum})`,
+              att: rr_response.data.output.average_turnaround_time,
+              awt: rr_response.data.output.average_waiting_time,
+            },
+            {
+              name: "sjf_np",
+              att: sjf_np_response.data.output.average_turnaround_time,
+              awt: sjf_np_response.data.output.average_waiting_time,
+            },
+            {
+              name: "sjf_p",
+              att: sjf_p_response.data.output.average_turnaround_time,
+              awt: sjf_p_response.data.output.average_waiting_time,
+            },
+          ]);
+        } catch (error) {
+          console.log(
+            "error occured while getting data for line chart: ",
+            error
+          );
+        }
+      }
+    } else if (
+      algorithm === "priority_preemptive" ||
+      algorithm === "priority_non_preemptive"
+    ) {
+      if (processes.length == 0) {
+        alert("Please add processes for comparison!");
+      } else {
+        try {
+          const priority_p = await axios.post("/api/priority_preemptive", {
+            n: processes.length,
+            processes: processes,
+          });
+
+          const priority_np = await axios.post("/api/priority_non_preemptive", {
+            n: processes.length,
+            processes: processes,
+          });
+
+          setLineChartState([
+            {
+              name: "priority_p",
+              att: priority_p.data.output.average_turnaround_time,
+              awt: priority_p.data.output.average_waiting_time,
+            },
+            {
+              name: "priority_np",
+              att: priority_np.data.output.average_turnaround_time,
+              awt: priority_np.data.output.average_waiting_time,
+            },
+          ]);
+        } catch (error) {
+          console.log(
+            "error occured while getting data for line chart: ",
+            error
+          );
+        }
+      }
+    }
+  };
+
   return (
     <>
       <div className="bg-slate-50">
@@ -235,6 +341,16 @@ export default function Algorithm() {
             <OutputProcessTable />
             <br />
             <GanttChart />
+            <div className="p-5">
+              <div className="flex justify-center">
+                <Button onClick={handleComparison}>
+                  Compare similar algorithms -&gt;
+                </Button>
+              </div>
+              <div className="mb-44 sm:mb-0">
+                <LineChart />
+              </div>
+            </div>
           </div>
         </div>
       </div>

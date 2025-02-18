@@ -26,6 +26,8 @@ type outputProcess = {
     priority: number
 }
 
+
+
 export const algorithmState = atom({
     key: "algorithmState",
     default: ""
@@ -69,4 +71,15 @@ export const average_turnaround_time = atom({
 export const average_waiting_time = atom({
     key: "average_waiting_timeState",
     default: 0
+})
+
+interface LINECHART_INTERFACE {
+    name: string;
+    att: number;
+    awt: number
+}
+
+export const lineChartState = atom<LINECHART_INTERFACE[]>({
+    key: "lineChartState",
+    default: []
 })
