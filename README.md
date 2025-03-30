@@ -3,10 +3,6 @@
 
 A visual tool to simulate 6+ CPU scheduling algorithms, including FCFS, SJF (Preemptive & Non-preemptive), Priority Scheduling (Preemptive & Non-preemptive), and Round Robin. It features an interactive Gantt Chart for process execution visualization and a graph comparing the average waiting and turnaround times of each algorithm.
 
-## 📖 Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
 ## 🎯 Features
 
 ✅ **6+ CPU Scheduling Algorithms** - Visualize various CPU scheduling techniques.  
