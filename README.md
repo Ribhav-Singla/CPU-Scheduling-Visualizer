@@ -1,14 +1,38 @@
 
-# CPU Scheduling Visualizer
+# CPU Scheduling Visualizer 🖥️⚡
 
-A visual tool to simulate 6+ CPU scheduling algorithms, including FCFS, SJF (Preemptive & Non-preemptive), Priority Scheduling (Preemptive & Non-preemptive), and Round Robin. It features an interactive Gantt Chart for process execution visualization and a graph comparing the average waiting and turnaround times of each algorithm.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://cpu-scheduling-visualizer-ribhav.vercel.app/)
+[![Next.js](https://img.shields.io/badge/Next.js-13+-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-blue)](https://tailwindcss.com/)
+
+An **interactive educational tool** for learning and visualizing CPU scheduling algorithms. Perfect for computer science students, educators, and anyone studying operating systems concepts.
 
 ## 🎯 Features
 
-✅ **6+ CPU Scheduling Algorithms** - Visualize various CPU scheduling techniques.  
-✅ **Interactive UI & UX** - Engaging and user-friendly interface for better understanding.  
-✅ **Dynamic Gantt Chart with Animation** - See process execution with smooth animations.  
-✅ **Performance Comparison Graph** - Compare the average waiting and turnaround time of different algorithms visually.  
+### **6 CPU Scheduling Algorithms**
+- **FCFS (First-Come, First-Served)** - Simple queue-based scheduling
+- **SJF Non-Preemptive** - Shortest job first without interruption  
+- **SJF Preemptive (SRTF)** - Shortest remaining time first with preemption
+- **Priority Non-Preemptive** - Priority-based without interruption
+- **Priority Preemptive** - Priority-based with preemption
+- **Round Robin** - Time-slice based circular scheduling
+
+### **Interactive Visualizations**
+- 📊 **Real-time Gantt Charts** - Visual timeline of process execution
+- 📈 **Performance Metrics** - Completion time, turnaround time, waiting time
+- ⚡ **Instant Calculations** - Average waiting time and turnaround time
+- 🎮 **Interactive Input** - Add, edit, and remove processes dynamically
+
+### **Educational Benefits**
+- 🎓 Perfect for **Operating Systems courses**
+- 📚 Helps understand **algorithm complexity and efficiency**
+- 🔍 **Compare different scheduling strategies** side-by-side
+- 💡 Visual learning for better **concept retention**
+
+## 🚀 Live Demo
+
+**[Try the CPU Scheduling Visualizer →](https://cpu-scheduling-visualizer-ribhav.vercel.app/)**  
 ## ⚡ Installation
 
 ### 🔧 Prerequisites:

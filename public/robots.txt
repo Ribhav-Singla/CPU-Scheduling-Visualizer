@@ -2,6 +2,21 @@
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Allow: /algorithms
+
+# *
+User-agent: *
+Disallow: /api/private
+Disallow: /_next/
+Disallow: /admin/
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
 # Host
 Host: https://cpu-scheduling-visualizer-ribhav.vercel.app/
 

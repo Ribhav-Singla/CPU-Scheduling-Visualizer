@@ -2,13 +2,40 @@
 module.exports = {
   siteUrl: 'https://cpu-scheduling-visualizer-ribhav.vercel.app/', 
   generateRobotsTxt: true,
-  changefreq: 'never',
-  priority: 0.7,
+  changefreq: 'monthly',
+  priority: 0.8,
   sitemapSize: 5000, 
-  exclude: [],
+  exclude: ['/api/*', '/_next/*'],
+  additionalPaths: async (config) => [
+    {
+      loc: '/algorithms',
+      changefreq: 'monthly',
+      priority: 0.9,
+      lastmod: new Date().toISOString(),
+    }
+  ],
   robotsTxtOptions: {
-      policies: [
-          { userAgent: '*', allow: '/' }
-      ],
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+      {
+        userAgent: '*',
+        allow: '/algorithms',
+      },
+      {
+        userAgent: '*',
+        disallow: ['/api/private', '/_next/', '/admin/'],
+      },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        crawlDelay: 1,
+      },
+    ],
+    additionalSitemaps: [
+      'https://cpu-scheduling-visualizer-ribhav.vercel.app/sitemap.xml',
+    ],
   },
-};
+}
