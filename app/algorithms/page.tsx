@@ -17,11 +17,21 @@ import { average_waiting_time } from "../(recoil)/store";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 import LineChart from "../(components)/lineChart";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 export default function Algorithm() {
   const algorithm = useRecoilValue(algorithmState);
   const processes = useRecoilValue(processesState);
   const time_quantum = useRecoilValue(timeQuantumState);
+  const currentAlgorithm = useRecoilValue(currAlgorithmState);
+  const outputProcesses = useRecoilValue(outputProcessesState);
+  const ganttChartProcess = useRecoilValue(ganntChart_processState);
+  const ganttChartStartTime = useRecoilValue(ganntChart_startTimeState);
+  const avgTurnaroundTime = useRecoilValue(average_turnaround_time);
+  const avgWaitingTime = useRecoilValue(average_waiting_time);
+  const lineChartData = useRecoilValue(lineChartState);
   const currAlgorithm = useSetRecoilState(currAlgorithmState);
   const setOutputProcessesState = useSetRecoilState(outputProcessesState);
   const setOutputGanntChartProcess = useSetRecoilState(ganntChart_processState);
@@ -310,6 +320,227 @@ export default function Algorithm() {
     }
   };
 
+  const getAlgorithmName = (algo: string): string => {
+    const algorithmNames: { [key: string]: string } = {
+      fcfs: "First-Come, First-Served (FCFS)",
+      sjf_non_preemptive: "Shortest Job First (Non-Preemptive)",
+      sjf_preemptive: "Shortest Job First (Preemptive / SRTF)",
+      priority_preemptive: "Priority Scheduling (Preemptive)",
+      priority_non_preemptive: "Priority Scheduling (Non-Preemptive)",
+      round_robin: `Round Robin (Time Quantum: ${time_quantum})`,
+    };
+    return algorithmNames[algo] || algo;
+  };
+
+  const handleExportResults = async () => {
+    try {
+      if (!currentAlgorithm || outputProcesses.length === 0) {
+        alert("Please run an algorithm first before exporting results!");
+        return;
+      }
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      let yPosition = 20;
+
+      // Title
+      pdf.setFontSize(20);
+      pdf.setFont("helvetica", "bold");
+      pdf.text("CPU Scheduling Results", pageWidth / 2, yPosition, {
+        align: "center",
+      });
+
+      // Algorithm Name
+      yPosition += 15;
+      pdf.setFontSize(14);
+      pdf.setFont("helvetica", "normal");
+      pdf.text(`Algorithm: ${getAlgorithmName(currentAlgorithm)}`, 15, yPosition);
+
+      // Average Times
+      yPosition += 10;
+      pdf.setFontSize(12);
+      pdf.text(
+        `Average Turnaround Time: ${Number(avgTurnaroundTime).toFixed(2)}`,
+        15,
+        yPosition
+      );
+      yPosition += 7;
+      pdf.text(`Average Waiting Time: ${Number(avgWaitingTime).toFixed(2)}`, 15, yPosition);
+
+      // Input Process Table
+      yPosition += 15;
+      pdf.setFontSize(14);
+      pdf.setFont("helvetica", "bold");
+      pdf.text("Input Process Table", 15, yPosition);
+      yPosition += 7;
+
+      pdf.setFontSize(10);
+      pdf.setFont("helvetica", "normal");
+      const inputHeaders = ["Process ID", "Arrival Time", "Burst Time"];
+      if (processes.length > 0 && "priority" in processes[0]) {
+        inputHeaders.push("Priority");
+      }
+
+      const inputData = processes.map((process, index) => {
+        const row = [
+          `P${index + 1}`,
+          process.arrival_time.toString(),
+          process.burst_time.toString(),
+        ];
+        if ("priority" in process) {
+          row.push(process.priority.toString());
+        }
+        return row;
+      });
+
+      autoTable(pdf, {
+        startY: yPosition,
+        head: [inputHeaders],
+        body: inputData,
+        theme: "grid",
+        headStyles: { fillColor: [18, 172, 238] },
+        margin: { left: 15 },
+      });
+
+      yPosition = (pdf as any).lastAutoTable.finalY + 15;
+
+      // Output Process Table
+      if (yPosition > pageHeight - 60) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+
+      pdf.setFontSize(14);
+      pdf.setFont("helvetica", "bold");
+      pdf.text("Output Process Table", 15, yPosition);
+      yPosition += 7;
+
+      pdf.setFontSize(10);
+      pdf.setFont("helvetica", "normal");
+      const outputHeaders = [
+        "Process ID",
+        "Arrival Time",
+        "Burst Time",
+        "Completion Time",
+        "Turnaround Time",
+        "Waiting Time",
+      ];
+      if (outputProcesses.length > 0 && "priority" in outputProcesses[0]) {
+        outputHeaders.splice(3, 0, "Priority");
+      }
+
+      const outputData = outputProcesses.map((process) => {
+        const row = [
+          `P${process.process_id}`,
+          process.arrival_time.toString(),
+          process.burst_time.toString(),
+        ];
+        if ("priority" in process) {
+          row.push(process.priority.toString());
+        }
+        row.push(
+          process.completion_time.toString(),
+          process.turnaround_time.toString(),
+          process.waiting_time.toString()
+        );
+        return row;
+      });
+
+      autoTable(pdf, {
+        startY: yPosition,
+        head: [outputHeaders],
+        body: outputData,
+        theme: "grid",
+        headStyles: { fillColor: [93, 244, 136] },
+        margin: { left: 15 },
+      });
+
+      yPosition = (pdf as any).lastAutoTable.finalY + 15;
+
+      // Capture Gantt Chart
+      if (yPosition > pageHeight - 100) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+
+      const ganttChartElement = document.querySelector(".gantt-chart-container");
+      if (ganttChartElement) {
+        pdf.setFontSize(14);
+        pdf.setFont("helvetica", "bold");
+        pdf.text("Gantt Chart", 15, yPosition);
+        yPosition += 7;
+
+        const ganttCanvas = await html2canvas(ganttChartElement as HTMLElement, {
+          scale: 2,
+          backgroundColor: "#ffffff",
+        });
+        const ganttImgData = ganttCanvas.toDataURL("image/png");
+        const ganttImgWidth = pageWidth - 30;
+        const ganttImgHeight = (ganttCanvas.height * ganttImgWidth) / ganttCanvas.width;
+
+        if (yPosition + ganttImgHeight > pageHeight - 20) {
+          pdf.addPage();
+          yPosition = 20;
+        }
+
+        pdf.addImage(ganttImgData, "PNG", 15, yPosition, ganttImgWidth, ganttImgHeight);
+        yPosition += ganttImgHeight + 15;
+      }
+
+      // Capture Comparison Chart if available
+      if (lineChartData.length > 0) {
+        const lineChartElement = document.querySelector(".recharts-wrapper");
+        if (lineChartElement) {
+          if (yPosition > pageHeight - 100) {
+            pdf.addPage();
+            yPosition = 20;
+          }
+
+          pdf.setFontSize(14);
+          pdf.setFont("helvetica", "bold");
+          pdf.text("Algorithm Comparison Chart", 15, yPosition);
+          yPosition += 7;
+
+          const chartCanvas = await html2canvas(
+            lineChartElement as HTMLElement,
+            {
+              scale: 2,
+              backgroundColor: "#ffffff",
+            }
+          );
+          const chartImgData = chartCanvas.toDataURL("image/png");
+          const chartImgWidth = pageWidth - 30;
+          const chartImgHeight =
+            (chartCanvas.height * chartImgWidth) / chartCanvas.width;
+
+          if (yPosition + chartImgHeight > pageHeight - 20) {
+            pdf.addPage();
+            yPosition = 20;
+          }
+
+          pdf.addImage(
+            chartImgData,
+            "PNG",
+            15,
+            yPosition,
+            chartImgWidth,
+            chartImgHeight
+          );
+        }
+      }
+
+      // Save PDF
+      const fileName = `CPU_Scheduling_${currentAlgorithm}_${new Date().getTime()}.pdf`;
+      pdf.save(fileName);
+
+      alert("Results exported successfully!");
+    } catch (error) {
+      console.error("Error exporting results:", error);
+      alert("Failed to export results. Please try again.");
+    }
+  };
+
   return (
     <>
       <div className="bg-slate-50">
@@ -329,6 +560,7 @@ export default function Algorithm() {
                 </div>
                 <div className="p-5">
                   <Button onClick={handleSubmit}>Submit</Button>
+                  <Button className="ml-5" onClick={handleExportResults}>Export results</Button>
                 </div>
               </div>
               <div className="mb-10 lg:mb-0">

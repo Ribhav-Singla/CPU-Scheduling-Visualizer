@@ -13,7 +13,7 @@ export default function GanttChart() {
   const ganntChartStartTime = useRecoilValue(ganntChart_startTimeState);
 
   return (
-    <div className="p-5">
+    <div className="p-5 gantt-chart-container">
       <div className="mb-3">
         <h1 className="font-bold">Gantt Chart</h1>
       </div>
