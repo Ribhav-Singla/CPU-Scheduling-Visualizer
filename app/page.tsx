@@ -9,21 +9,13 @@ interface FeedbackForm {
 }
 
 export default function Home() {
-  const [showBanner, setShowBanner] = useState(true);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [feedbackForm, setFeedbackForm] = useState<FeedbackForm>({
     email: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowBanner(false);
-    }, 15000); // 15 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -71,33 +63,8 @@ export default function Home() {
 
   return (
     <>
-      <AnimatePresence>
-        {showBanner && (
-          <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="w-full text-white py-3 px-4 shadow-lg fixed top-0 left-0 right-0 z-50"
-            style={{ background: 'linear-gradient(to right, #12acee, #5df488)' }}
-          >
-            <div className="max-w-[1280px] mx-auto flex items-center justify-between">
-              <p className="text-sm md:text-base font-medium">
-                💡 Have suggestions or feedback? We&apos;d love to hear from you! Help us improve this tool.
-              </p>
-              <button
-                onClick={() => setShowBanner(false)}
-                className="ml-4 text-white hover:text-gray-200 transition-colors font-bold text-xl"
-                aria-label="Close banner"
-              >
-                ×
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
       <div className="landing_page_cont max-w-[1280px] w-full mx-auto">
-        <div className="flex flex-col justify-center items-center landing_container pt-10" style={{ marginTop: showBanner ? '60px' : '0px', transition: 'margin-top 0.3s ease' }}>
+        <div className="flex flex-col justify-center items-center landing_container pt-10">
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{
@@ -182,84 +149,130 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Feedback Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-16 md:mt-20 mb-16 px-4"
+        {/* Floating Feedback Button */}
+        <motion.button
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            transition: { delay: 0.5, duration: 0.5 },
+          }}
+          onClick={() => setShowFeedbackModal(true)}
+          className="fixed bottom-6 right-6 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform duration-200 z-40"
+          style={{ background: 'linear-gradient(to right, #12acee, #5df488)' }}
+          aria-label="Open feedback form"
         >
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-              We Value Your <span style={{ background: 'linear-gradient(to right, #12acee, #5df488)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Feedback</span>
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={feedbackForm.email}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12acee] focus:border-transparent transition-all"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Feedback
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={feedbackForm.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  placeholder="Share your suggestions, ideas, or report any issues..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12acee] focus:border-transparent transition-all resize-none"
-                />
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-8 py-3 mb-10 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                  style={{
-                    background: isSubmitting
-                      ? '#9ca3af'
-                      : 'linear-gradient(to right, #12acee, #5df488)',
-                  }}
-                >
-                  {isSubmitting ? "Sending..." : "Send Feedback"}
-                </button>
-                {submitStatus === "success" && (
-                  <motion.p
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-green-600 font-medium"
-                  >
-                    ✓ Thank you! Your feedback has been submitted.
-                  </motion.p>
-                )}
-                {submitStatus === "error" && (
-                  <motion.p
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-red-600 font-medium"
-                  >
-                    ✗ Something went wrong. Please try again.
-                  </motion.p>
-                )}
-              </div>
-            </form>
-          </div>
-        </motion.div>
+          💬
+        </motion.button>
+
+        {/* Feedback Modal */}
+        <AnimatePresence>
+          {showFeedbackModal && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setShowFeedbackModal(false)}
+                className="fixed inset-0 bg-black bg-opacity-50 z-50"
+              />
+              
+              {/* Modal */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 50 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="fixed bottom-6 right-6 w-[90vw] max-w-md bg-white rounded-2xl shadow-2xl z-50 overflow-hidden"
+              >
+                {/* Modal Header */}
+                <div className="p-6 pb-4" style={{ background: 'linear-gradient(to right, #12acee, #5df488)' }}>
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                      💬 Feedback
+                    </h2>
+                    <button
+                      onClick={() => setShowFeedbackModal(false)}
+                      className="text-white hover:text-gray-200 transition-colors text-3xl leading-none"
+                      aria-label="Close feedback modal"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <p className="text-white text-sm mt-2 opacity-90">
+                    We&apos;d love to hear your thoughts!
+                  </p>
+                </div>
+
+                {/* Modal Content */}
+                <div className="p-6 max-h-[60vh] overflow-y-auto">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-700">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={feedbackForm.email}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="your.email@example.com"
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12acee] focus:border-transparent transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-700">
+                        Your Feedback
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={feedbackForm.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={5}
+                        placeholder="Share your suggestions, ideas, or report any issues..."
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12acee] focus:border-transparent transition-all resize-none"
+                      />
+                    </div>
+                    
+                    {submitStatus && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`p-3 rounded-lg text-sm font-medium ${
+                          submitStatus === "success" 
+                            ? "bg-green-50 text-green-700 border border-green-200" 
+                            : "bg-red-50 text-red-700 border border-red-200"
+                        }`}
+                      >
+                        {submitStatus === "success" 
+                          ? "✓ Thank you! Your feedback has been submitted." 
+                          : "✗ Something went wrong. Please try again."}
+                      </motion.div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      style={{
+                        background: isSubmitting
+                          ? '#9ca3af'
+                          : 'linear-gradient(to right, #12acee, #5df488)',
+                      }}
+                    >
+                      {isSubmitting ? "Sending..." : "Send Feedback"}
+                    </button>
+                  </form>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

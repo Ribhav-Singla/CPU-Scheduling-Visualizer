@@ -1,17 +1,57 @@
 {
-  "name": "CPU Scheduling Visualizer",
+  "name": "CPU Scheduling Visualizer - Interactive Algorithm Simulator",
   "short_name": "CPU Scheduler",
-  "description": "Interactive CPU scheduling algorithm visualizer for learning operating systems concepts",
+  "description": "Free interactive CPU scheduling algorithm visualizer with Gantt charts. Learn FCFS, SJF, SRTF, Round Robin, and Priority Scheduling. Perfect for OS students, GATE exam prep, and technical interviews.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1976d2",
+  "theme_color": "#12acee",
   "orientation": "portrait-primary",
-  "categories": ["education", "productivity", "utilities"],
+  "categories": ["education", "productivity", "utilities", "tools"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
   "icons": [
+    {
+      "src": "/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
       "type": "image/png",
       "purpose": "maskable any"
     },
@@ -21,5 +61,34 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "CPU Scheduling Visualizer Dashboard"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile View of CPU Scheduler"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start Simulator",
+      "short_name": "Simulator",
+      "description": "Open the CPU scheduling algorithm simulator",
+      "url": "/algorithms",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "iarc_rating_id": "",
+  "protocol_handlers": [],
+  "id": "cpu-scheduling-visualizer"
 }

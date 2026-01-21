@@ -1,23 +1,64 @@
-# *
+# CPU Scheduling Visualizer - Robots.txt
+# https://cpu-scheduling-visualizer-ribhav.vercel.app
+
+# Allow all search engines full access
 User-agent: *
 Allow: /
-
-# *
-User-agent: *
 Allow: /algorithms
-
-# *
-User-agent: *
-Disallow: /api/private
-Disallow: /_next/
+Disallow: /api/
+Disallow: /_next/static/
 Disallow: /admin/
 
-# Googlebot
+# Google
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
+# Google Image
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# Sitemap
+Sitemap: https://cpu-scheduling-visualizer-ribhav.vercel.app/sitemap.xml
+
 # Host
+Host: https://cpu-scheduling-visualizer-ribhav.vercel.app
 Host: https://cpu-scheduling-visualizer-ribhav.vercel.app/
 
 # Sitemaps
