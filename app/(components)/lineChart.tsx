@@ -30,8 +30,17 @@ export default function LineChartComponent() {
     return (
       <div className="max-w-xl h-[350px] mx-auto pt-10">
         {/* Small box explaining the purpose */}
-        <div className="bg-gray-100 p-4 border border-gray-300 rounded-md text-center text-gray-600">
-          <p>No data available to display. Please ensure that the data has been correctly loaded or generated.</p>
+        <div className="border border-gray-200 rounded-lg p-6 text-center">
+          <div className="text-4xl mb-3">📈</div>
+          <h3 className="font-semibold text-gray-800 mb-2">Algorithm Comparison Chart</h3>
+          <p className="text-gray-600 text-sm max-w-md mx-auto">
+            This chart compares the performance of similar scheduling algorithms using the same process data. 
+            You&apos;ll see average turnaround time and waiting time plotted for each algorithm, making it easy 
+            to identify which performs best for your specific workload.
+          </p>
+          <p className="text-gray-500 text-xs mt-3">
+            Click &quot;Compare similar algorithms&quot; button after adding processes to generate this comparison.
+          </p>
         </div>
       </div>
     );

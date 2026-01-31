@@ -1,0 +1,52 @@
+# CPU Scheduling Visualizer
+
+> A free, interactive educational tool for learning and understanding CPU scheduling algorithms
+
+## About
+
+CPU Scheduling Visualizer is an open-source web application that helps students, educators, and professionals understand how operating system CPU scheduling algorithms work through interactive visualizations.
+
+## Features
+
+- **FCFS (First Come First Served)**: Non-preemptive algorithm that executes processes in arrival order
+- **SJF (Shortest Job First)**: Non-preemptive algorithm that prioritizes shortest burst time
+- **SRTF (Shortest Remaining Time First)**: Preemptive version of SJF
+- **Round Robin**: Time-sharing algorithm with configurable time quantum
+- **Priority Scheduling**: Both preemptive and non-preemptive variants
+
+## Capabilities
+
+- Interactive Gantt chart generation
+- Automatic calculation of waiting time and turnaround time
+- Algorithm performance comparison
+- PDF export of results
+- Mobile-responsive design
+
+## Target Audience
+
+- Computer Science students
+- GATE exam aspirants
+- Software engineering interview preparation
+- Educators and professors
+- Self-learners
+
+## Pages
+
+- Home: https://cpu-scheduling-visualizer-ribhav.vercel.app/
+- Visualizer Tool: https://cpu-scheduling-visualizer-ribhav.vercel.app/algorithms
+- About Us: https://cpu-scheduling-visualizer-ribhav.vercel.app/about
+- Contact: https://cpu-scheduling-visualizer-ribhav.vercel.app/contact
+- Privacy Policy: https://cpu-scheduling-visualizer-ribhav.vercel.app/privacy-policy
+- Terms & Conditions: https://cpu-scheduling-visualizer-ribhav.vercel.app/terms-and-conditions
+
+## Technical Details
+
+- Built with Next.js 14
+- Uses React and TypeScript
+- Styled with Tailwind CSS
+- Animations powered by Framer Motion
+- State management with Recoil
+
+## Contact
+
+For feedback or inquiries, please use the contact form on our website.

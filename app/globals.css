@@ -119,16 +119,18 @@
 
 .landing_page_btn_start{
   background: linear-gradient(to right,#12acee,#5df488);
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 20px;
+  display: inline-block;
+  text-align: center;
 }
 
-ul{
+.prose ul {
   list-style: disc;
 }
 
 
-@media screen  and (max-width: 450px) {
+@media screen and (max-width: 450px) {
   .process_inserter_container{
     flex-direction: column;
     justify-content: flex-start;
@@ -136,4 +138,20 @@ ul{
     gap: 10px;
   }
 
+  .cpu {
+    padding: 6px 8px;
+    font-size: 0.9em;
+  }
+
+  .landing_page_btn_start {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .arrival_burst_time_container {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import RecoilContextProvider from "./(lib)/recoilContextProvider";
+import GoogleAnalytics from "./(components)/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -18,10 +19,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://cpu-scheduling-visualizer-ribhav.vercel.app'),
   title: {
-    default: "CPU Scheduling Visualizer - Free Interactive Algorithm Simulator with Gantt Charts | Learn FCFS, SJF, Round Robin & Priority Scheduling Online",
-    template: "%s | CPU Scheduling Visualizer - Best Free OS Learning Tool 2026"
+    default: "CPU Scheduling Visualizer - Free Algorithm Simulator",
+    template: "%s | CPU Scheduling Visualizer"
   },
-  description: "#1 Free CPU Scheduling Algorithm Visualizer & Simulator! Master FCFS, SJF (Shortest Job First), SRTF, Round Robin, and Priority scheduling with interactive Gantt charts, real-time animations, waiting time & turnaround time calculators. Perfect for computer science students, OS exam prep, GATE preparation, and software engineering interviews. Used by 100,000+ students worldwide.",
+  description: "Free interactive CPU scheduling simulator. Visualize FCFS, SJF, Round Robin & Priority algorithms with Gantt charts. Perfect for OS students.",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },
@@ -132,8 +133,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://cpu-scheduling-visualizer-ribhav.vercel.app",
-    title: "CPU Scheduling Visualizer - #1 Free Interactive Algorithm Simulator with Gantt Charts",
-    description: "Master CPU scheduling algorithms with our free interactive visualizer! Learn FCFS, SJF, SRTF, Round Robin, and Priority scheduling with real-time Gantt charts, waiting time & turnaround time calculators. Perfect for students, GATE exam, and OS course preparation.",
+    title: "CPU Scheduling Visualizer - Free Algorithm Simulator",
+    description: "Master CPU scheduling with interactive Gantt charts. Learn FCFS, SJF, Round Robin & Priority scheduling free.",
     siteName: "CPU Scheduling Visualizer",
     images: [
       {
@@ -156,8 +157,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@cpuscheduler",
-    title: "CPU Scheduling Visualizer - #1 Free Interactive Algorithm Simulator",
-    description: "Master CPU scheduling algorithms with interactive visualizations. Learn FCFS, SJF, SRTF, Round Robin, and Priority scheduling with real-time Gantt charts. Perfect for OS students & GATE exam prep!",
+    title: "CPU Scheduling Visualizer - Free Algorithm Simulator",
+    description: "Interactive CPU scheduling simulator with Gantt charts. Learn FCFS, SJF, Round Robin & Priority scheduling free.",
     images: ["/twitter-image.png"],
     creator: "@cpuscheduler",
   },
@@ -468,6 +469,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className={inter.className}>
         <script
           type="application/ld+json"

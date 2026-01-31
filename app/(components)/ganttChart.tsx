@@ -18,6 +18,20 @@ export default function GanttChart() {
         <h1 className="font-bold">Gantt Chart</h1>
       </div>
 
+      {ganntChartProcesses.length === 0 ? (
+        <div className="border border-gray-200 rounded-lg p-6 text-center">
+          <div className="text-4xl mb-3">📊</div>
+          <h3 className="font-semibold text-gray-800 mb-2">Gantt Chart Visualization</h3>
+          <p className="text-gray-600 text-sm max-w-md mx-auto">
+            The Gantt chart will appear here once you run a scheduling algorithm. It displays the 
+            execution timeline of processes, showing which process runs at each time unit. Each block 
+            represents a process with its ID, and timestamps below indicate execution boundaries.
+          </p>
+          <p className="text-gray-500 text-xs mt-3">
+            Select an algorithm, add processes, and click &quot;Submit&quot; to see the visualization.
+          </p>
+        </div>
+      ) : (
       <div className="ganntChart">
         <div className="flex">
           <div className="w-16">
@@ -59,6 +73,7 @@ export default function GanttChart() {
           })}
         </div>
       </div>
+      )}
     </div>
   );
 }

@@ -20,8 +20,11 @@ import LineChart from "../(components)/lineChart";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import Link from "next/link";
+import Footer from "../(components)/footer";
+import FeedbackButton from "../(components)/FeedbackButton";
 
-export default function Algorithm() {
+export default function Visualizer() {
   const algorithm = useRecoilValue(algorithmState);
   const processes = useRecoilValue(processesState);
   const time_quantum = useRecoilValue(timeQuantumState);
@@ -543,7 +546,16 @@ export default function Algorithm() {
 
   return (
     <>
-      <div className="bg-slate-50">
+      <div className="bg-slate-50 min-h-screen">
+        {/* Breadcrumb Navigation */}
+        <div className="max-w-[1280px] mx-auto px-4 py-3 bg-white border-b">
+          <nav className="flex items-center text-sm text-gray-600">
+            <Link href="/" className="hover:text-blue-500 transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-gray-900 font-medium">Visualizer</span>
+          </nav>
+        </div>
+
         <div className="grid grid-cols-12 min-h-screen max-w-[1280px] mx-auto bg-white overflow-hidden">
           <div className="col-span-12 xl:col-span-4">
             <div className="pl-5 pt-5 pb-5 bg-blue-50 border-b-2">
@@ -559,8 +571,10 @@ export default function Algorithm() {
                   <ProcessInserter />
                 </div>
                 <div className="p-5">
-                  <Button onClick={handleSubmit}>Submit</Button>
-                  <Button className="ml-5" onClick={handleExportResults}>Export results</Button>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button onClick={handleSubmit} className="w-full sm:w-auto">Submit</Button>
+                    <Button onClick={handleExportResults} className="w-full sm:w-auto">Export results</Button>
+                  </div>
                 </div>
               </div>
               <div className="mb-10 lg:mb-0">
@@ -585,6 +599,34 @@ export default function Algorithm() {
             </div>
           </div>
         </div>
+
+        {/* Educational Note Below Visualizer */}
+        <div className="max-w-[1280px] mx-auto px-4 py-8 bg-white border-t">
+          <div className="prose max-w-none">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Understanding Your Results</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+              <div>
+                <h4 className="font-semibold mb-2">📊 Gantt Chart</h4>
+                <p className="text-sm">
+                  The Gantt chart displays the execution timeline of processes. Each block represents a process 
+                  running on the CPU, with the process ID shown inside and timestamps below indicating when 
+                  execution starts and ends.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">📈 Performance Metrics</h4>
+                <p className="text-sm">
+                  <strong>Turnaround Time</strong> = Completion Time - Arrival Time<br/>
+                  <strong>Waiting Time</strong> = Turnaround Time - Burst Time<br/>
+                  Lower average times indicate better algorithm performance for your specific workload.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <FeedbackButton />
+        <Footer />
       </div>
     </>
   );

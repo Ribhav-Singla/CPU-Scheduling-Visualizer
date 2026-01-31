@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,7 +16,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // If no API key is configured, return a development message
+    if (!resendApiKey) {
+      console.log('Feedback received (Development Mode):', { email, message });
+      return NextResponse.json(
+        { success: true, message: 'Feedback received (API key not configured for development)' },
+        { status: 200 }
+      );
+    }
+
     // Send email using Resend
+    const resend = new Resend(resendApiKey);
     const data = await resend.emails.send({
       from: 'CPU Scheduler Feedback <onboarding@resend.dev>', // Replace with your verified domain
       to: ['ribhavsingla2166@gmail.com'],
