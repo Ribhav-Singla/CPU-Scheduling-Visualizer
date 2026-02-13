@@ -4,13 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Footer from "./(components)/footer";
 import FeedbackButton from "./(components)/FeedbackButton";
+import { ThemeToggle } from "./(components)/ThemeToggle";
 
 export default function Home() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-background">
+        {/* Theme Toggle */}
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex justify-end">
+          <ThemeToggle />
+        </div>
+
         {/* Hero Section */}
         <section className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col justify-center items-center pt-10 pb-12">
@@ -30,7 +36,7 @@ export default function Home() {
                 opacity: 1,
                 transition: { delay: 0.3 },
               }}
-              className="text-lg md:text-xl text-gray-600 text-center max-w-3xl mt-4 px-4"
+              className="text-lg md:text-xl text-muted-foreground text-center max-w-3xl mt-4 px-4"
             >
               Master operating system concepts with our free interactive CPU scheduling simulator. 
               Visualize FCFS, SJF, Round Robin, and Priority scheduling algorithms with real-time Gantt charts.
@@ -56,10 +62,10 @@ export default function Home() {
           
           {/* What is CPU Scheduling Section */}
           <section className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               What is CPU Scheduling?
             </h2>
-            <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+            <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
                 <strong>CPU scheduling</strong> is a fundamental concept in operating systems that determines which process 
                 runs on the CPU at any given time. When multiple processes are waiting to be executed, the operating system 
@@ -81,11 +87,11 @@ export default function Home() {
           </section>
 
           {/* Why CPU Scheduling is Important */}
-          <section className="mb-16 bg-gray-50 rounded-2xl p-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <section className="mb-16 bg-muted/50 rounded-2xl p-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Why is CPU Scheduling Important in Operating Systems?
             </h2>
-            <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+            <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
                 CPU scheduling plays a critical role in the overall performance and efficiency of computer systems. 
                 Here&apos;s why it&apos;s so important:
@@ -117,10 +123,10 @@ export default function Home() {
 
           {/* Types of CPU Scheduling Algorithms */}
           <section className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Types of CPU Scheduling Algorithms
             </h2>
-            <p className="text-lg text-gray-700 mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               CPU scheduling algorithms can be broadly classified into two categories: <strong>preemptive</strong> and 
               <strong> non-preemptive</strong>. In preemptive scheduling, a running process can be interrupted and moved 
               to the ready queue if a higher-priority process arrives. In non-preemptive scheduling, once a process starts 
@@ -129,17 +135,17 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* FCFS */}
-              <div className="bg-white rounded-xl shadow-md p-6 relative overflow-hidden">
+              <div className="bg-card rounded-xl shadow-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 bottom-0 w-1 rounded-l-xl" style={{ background: 'linear-gradient(to bottom, #12acee, #5df488)' }}></div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   First-Come, First-Served (FCFS)
                 </h3>
-                <p className="text-gray-700 mb-3">
+                <p className="text-muted-foreground mb-3">
                   FCFS is the simplest CPU scheduling algorithm. Processes are executed in the exact order they arrive 
                   in the ready queue. It&apos;s a non-preemptive algorithm, meaning once a process starts, it runs until completion.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
                     <strong>Pros:</strong> Simple to implement, no starvation<br/>
                     <strong>Cons:</strong> Convoy effect, high average waiting time<br/>
                     <strong>Best for:</strong> Batch systems, simple applications
@@ -148,18 +154,18 @@ export default function Home() {
               </div>
 
               {/* SJF Non-Preemptive */}
-              <div className="bg-white rounded-xl shadow-md p-6 relative overflow-hidden">
+              <div className="bg-card rounded-xl shadow-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 bottom-0 w-1 rounded-l-xl" style={{ background: 'linear-gradient(to bottom, #12acee, #5df488)' }}></div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   Shortest Job First (SJF) - Non-Preemptive
                 </h3>
-                <p className="text-gray-700 mb-3">
+                <p className="text-muted-foreground mb-3">
                   SJF selects the process with the smallest burst time from the ready queue. Once selected, 
                   the process runs to completion. This algorithm provides minimum average waiting time among 
                   all non-preemptive algorithms.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
                     <strong>Pros:</strong> Optimal average waiting time<br/>
                     <strong>Cons:</strong> Starvation for long processes, requires burst time prediction<br/>
                     <strong>Best for:</strong> Environments where burst times are known
@@ -168,18 +174,18 @@ export default function Home() {
               </div>
 
               {/* SJF Preemptive (SRTF) */}
-              <div className="bg-white rounded-xl shadow-md p-6 relative overflow-hidden">
+              <div className="bg-card rounded-xl shadow-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 bottom-0 w-1 rounded-l-xl" style={{ background: 'linear-gradient(to bottom, #12acee, #5df488)' }}></div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   Shortest Remaining Time First (SRTF)
                 </h3>
-                <p className="text-gray-700 mb-3">
+                <p className="text-muted-foreground mb-3">
                   SRTF is the preemptive version of SJF. If a new process arrives with a shorter burst time 
                   than the remaining time of the current process, the current process is preempted. This provides 
                   the optimal average waiting time among all scheduling algorithms.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
                     <strong>Pros:</strong> Optimal average waiting time, responsive<br/>
                     <strong>Cons:</strong> High overhead, starvation possible<br/>
                     <strong>Best for:</strong> Time-sharing systems
@@ -188,18 +194,18 @@ export default function Home() {
               </div>
 
               {/* Round Robin */}
-              <div className="bg-white rounded-xl shadow-md p-6 relative overflow-hidden">
+              <div className="bg-card rounded-xl shadow-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 bottom-0 w-1 rounded-l-xl" style={{ background: 'linear-gradient(to bottom, #12acee, #5df488)' }}></div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   Round Robin (RR)
                 </h3>
-                <p className="text-gray-700 mb-3">
+                <p className="text-muted-foreground mb-3">
                   Round Robin assigns a fixed time quantum to each process. The CPU cycles through processes 
                   in a circular manner. If a process doesn&apos;t complete within its quantum, it&apos;s placed at 
                   the end of the queue. This ensures fair CPU distribution.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
                     <strong>Pros:</strong> Fair, no starvation, good response time<br/>
                     <strong>Cons:</strong> Performance depends on quantum size<br/>
                     <strong>Best for:</strong> Time-sharing and interactive systems
@@ -208,18 +214,18 @@ export default function Home() {
               </div>
 
               {/* Priority Preemptive */}
-              <div className="bg-white rounded-xl shadow-md p-6 relative overflow-hidden">
+              <div className="bg-card rounded-xl shadow-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 bottom-0 w-1 rounded-l-xl" style={{ background: 'linear-gradient(to bottom, #12acee, #5df488)' }}></div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   Priority Scheduling (Preemptive)
                 </h3>
-                <p className="text-gray-700 mb-3">
+                <p className="text-muted-foreground mb-3">
                   Each process is assigned a priority. The CPU is allocated to the highest priority process. 
                   If a new process with higher priority arrives, it preempts the current process. Lower numbers 
                   typically indicate higher priority.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
                     <strong>Pros:</strong> Important processes run first<br/>
                     <strong>Cons:</strong> Starvation of low-priority processes<br/>
                     <strong>Solution:</strong> Aging technique to prevent starvation
@@ -228,17 +234,17 @@ export default function Home() {
               </div>
 
               {/* Priority Non-Preemptive */}
-              <div className="bg-white rounded-xl shadow-md p-6 relative overflow-hidden">
+              <div className="bg-card rounded-xl shadow-md p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 bottom-0 w-1 rounded-l-xl" style={{ background: 'linear-gradient(to bottom, #12acee, #5df488)' }}></div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   Priority Scheduling (Non-Preemptive)
                 </h3>
-                <p className="text-gray-700 mb-3">
+                <p className="text-muted-foreground mb-3">
                   Similar to preemptive priority scheduling, but once a process starts executing, it runs 
                   to completion regardless of any higher-priority processes that may arrive during its execution.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
                     <strong>Pros:</strong> Less overhead than preemptive<br/>
                     <strong>Cons:</strong> Poor response time for high-priority arrivals<br/>
                     <strong>Best for:</strong> Batch processing with priorities
@@ -249,11 +255,11 @@ export default function Home() {
           </section>
 
           {/* How This Visualizer Works */}
-          <section className="mb-16 bg-gray-50 rounded-2xl p-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <section className="mb-16 bg-muted/50 rounded-2xl p-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               How This CPU Scheduling Visualizer Works
             </h2>
-            <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+            <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
                 Our CPU Scheduling Visualizer is designed to help you understand and compare different scheduling 
                 algorithms through interactive visualization. Here&apos;s how to use it:
@@ -298,10 +304,10 @@ export default function Home() {
 
           {/* Key Metrics Explained */}
           <section className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Understanding CPU Scheduling Metrics
             </h2>
-            <div className="prose prose-lg max-w-none text-gray-700 mb-8">
+            <div className="prose prose-lg max-w-none text-muted-foreground mb-8">
               <p>
                 To effectively compare scheduling algorithms, you need to understand the key performance metrics. 
                 Our visualizer calculates all of these automatically for each process:
@@ -309,7 +315,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <motion.div 
-                className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer"
+                className="bg-card rounded-xl shadow-md p-6 text-center cursor-pointer"
                 whileHover={{ 
                   scale: 1.02,
                   rotateX: 0,
@@ -319,16 +325,16 @@ export default function Home() {
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">⏱️</span>
                 </div>
                 <h3 className="font-bold text-lg mb-2">Arrival Time</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-muted-foreground text-sm">
                   The time at which a process enters the ready queue and becomes available for execution.
                 </p>
               </motion.div>
               <motion.div 
-                className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer"
+                className="bg-card rounded-xl shadow-md p-6 text-center cursor-pointer"
                 whileHover={{ 
                   scale: 1.02,
                   rotateX: 0,
@@ -338,16 +344,16 @@ export default function Home() {
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">⚡</span>
                 </div>
                 <h3 className="font-bold text-lg mb-2">Burst Time</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-muted-foreground text-sm">
                   The total CPU time required by a process to complete its execution.
                 </p>
               </motion.div>
               <motion.div 
-                className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer"
+                className="bg-card rounded-xl shadow-md p-6 text-center cursor-pointer"
                 whileHover={{ 
                   scale: 1.02,
                   rotateX: 0,
@@ -357,16 +363,16 @@ export default function Home() {
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">🔄</span>
                 </div>
                 <h3 className="font-bold text-lg mb-2">Turnaround Time</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-muted-foreground text-sm">
                   Total time from arrival to completion. Formula: Completion Time - Arrival Time.
                 </p>
               </motion.div>
               <motion.div 
-                className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer"
+                className="bg-card rounded-xl shadow-md p-6 text-center cursor-pointer"
                 whileHover={{ 
                   scale: 1.02,
                   rotateX: 0,
@@ -376,11 +382,11 @@ export default function Home() {
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">⏳</span>
                 </div>
                 <h3 className="font-bold text-lg mb-2">Waiting Time</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-muted-foreground text-sm">
                   Time spent waiting in the ready queue. Formula: Turnaround Time - Burst Time.
                 </p>
               </motion.div>
@@ -388,49 +394,49 @@ export default function Home() {
           </section>
 
           {/* Who Should Use This Tool */}
-          <section className="mb-16 bg-gray-50 rounded-2xl p-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <section className="mb-16 bg-muted/50 rounded-2xl p-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Who Should Use This CPU Scheduling Visualizer?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-3 text-gray-800">🎓 Computer Science Students</h3>
-                <p className="text-gray-700">
+              <div className="bg-card rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-xl mb-3 text-foreground">🎓 Computer Science Students</h3>
+                <p className="text-muted-foreground">
                   Perfect for understanding operating system concepts taught in undergraduate and graduate courses. 
                   Visualize algorithms you learn in class and reinforce your understanding.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-3 text-gray-800">📚 GATE Exam Aspirants</h3>
-                <p className="text-gray-700">
+              <div className="bg-card rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-xl mb-3 text-foreground">📚 GATE Exam Aspirants</h3>
+                <p className="text-muted-foreground">
                   CPU scheduling is a frequently tested topic in GATE. Use this tool to practice problems 
                   and verify your manual calculations quickly.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-3 text-gray-800">💼 Interview Preparation</h3>
-                <p className="text-gray-700">
+              <div className="bg-card rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-xl mb-3 text-foreground">💼 Interview Preparation</h3>
+                <p className="text-muted-foreground">
                   Operating system questions are common in software engineering interviews. Understand algorithms 
                   deeply by visualizing their behavior with different inputs.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-3 text-gray-800">👨‍🏫 Educators & Professors</h3>
-                <p className="text-gray-700">
+              <div className="bg-card rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-xl mb-3 text-foreground">👨‍🏫 Educators & Professors</h3>
+                <p className="text-muted-foreground">
                   Use this tool in your lectures to demonstrate scheduling algorithms visually. 
                   Export results for assignments and exam solutions.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-3 text-gray-800">🔬 Researchers</h3>
-                <p className="text-gray-700">
+              <div className="bg-card rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-xl mb-3 text-foreground">🔬 Researchers</h3>
+                <p className="text-muted-foreground">
                   Compare algorithm performance across different scenarios. Useful for research papers 
                   and academic studies on process scheduling.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-3 text-gray-800">🌱 Self-Learners</h3>
-                <p className="text-gray-700">
+              <div className="bg-card rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-xl mb-3 text-foreground">🌱 Self-Learners</h3>
+                <p className="text-muted-foreground">
                   Learning operating systems on your own? This visual approach makes complex concepts 
                   easier to grasp without formal instruction.
                 </p>
@@ -440,7 +446,7 @@ export default function Home() {
 
           {/* FAQ Section */}
           <section id="faq" className="mb-10 scroll-mt-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Frequently Asked Questions
             </h2>
             <div className="space-y-4">
@@ -466,17 +472,17 @@ export default function Home() {
                   a: "Starvation occurs when a process waits indefinitely because other processes keep getting CPU time. This commonly happens in SJF (long processes may never run) and Priority Scheduling (low-priority processes may starve). Solutions include aging, where process priority increases the longer it waits."
                 },
               ].map((faq, index) => (
-                <div key={index} className={`rounded-xl shadow-md overflow-hidden ${openFaqIndex === index ? 'bg-gray-50' : 'bg-white'}`}>
+                <div key={index} className={`rounded-xl shadow-md overflow-hidden ${openFaqIndex === index ? 'bg-muted' : 'bg-card'}`}>
                   <button
                     onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                    className={`w-full p-6 text-left flex items-center justify-between gap-4 transition-colors ${openFaqIndex === index ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+                    className={`w-full p-6 text-left flex items-center justify-between gap-4 transition-colors ${openFaqIndex === index ? 'bg-muted' : 'hover:bg-muted/50'}`}
                     aria-expanded={openFaqIndex === index}
                   >
-                    <h3 className="font-bold text-lg text-gray-800">{faq.q}</h3>
+                    <h3 className="font-bold text-lg text-foreground">{faq.q}</h3>
                     <motion.span
                       animate={{ rotate: openFaqIndex === index ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="text-gray-500 text-xl flex-shrink-0"
+                      className="text-muted-foreground text-xl flex-shrink-0"
                     >
                       ↓
                     </motion.span>
@@ -490,7 +496,7 @@ export default function Home() {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <p className="px-6 pb-6 text-gray-700 pt-4">{faq.a}</p>
+                        <p className="px-6 pb-6 text-muted-foreground pt-4">{faq.a}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>

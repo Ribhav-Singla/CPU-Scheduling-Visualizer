@@ -65,13 +65,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #eeeeee;
   }
-}
-
-.landing_page_cont{
-  background-color: #eeeeee;
-  height: 100vh;
 }
 
 .cpu{

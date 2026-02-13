@@ -4,19 +4,36 @@ import Footer from "../(components)/footer";
 import FeedbackButton from "../(components)/FeedbackButton";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions",
-  description: "Terms and conditions for using the CPU Scheduling Visualizer website and educational services.",
+  title: "Terms and Conditions - CPU Scheduling Visualizer",
+  description: "Terms and conditions for using CPU Scheduling Visualizer — the free interactive CPU scheduling algorithm simulator and educational tool.",
+  alternates: {
+    canonical: "https://cpu-scheduling-visualizer-ribhav.vercel.app/terms-and-conditions",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function TermsAndConditionsPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpu-scheduling-visualizer-ribhav.vercel.app" },
+      { "@type": "ListItem", "position": 2, "name": "Terms and Conditions", "item": "https://cpu-scheduling-visualizer-ribhav.vercel.app/terms-and-conditions" }
+    ]
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* Breadcrumb Navigation */}
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 bg-white border-b">
-        <nav className="flex items-center text-sm text-gray-600">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 bg-card border-b border-border">
+        <nav className="flex items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-blue-500 transition-colors">Home</Link>
           <span className="mx-2">›</span>
-          <span className="text-gray-900 font-medium">Terms and Conditions</span>
+          <span className="text-foreground font-medium">Terms and Conditions</span>
         </nav>
       </div>
 
@@ -34,14 +51,14 @@ export default function TermsAndConditionsPage() {
 
       {/* Main Content */}
       <main className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="prose prose-lg max-w-none text-gray-700">
+        <div className="prose prose-lg max-w-none text-muted-foreground">
           
-          <p className="text-sm text-gray-500 mb-8">
+          <p className="text-sm text-muted-foreground mb-8">
             <strong>Last Updated:</strong> January 31, 2026
           </p>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">1. Acceptance of Terms</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">1. Acceptance of Terms</h2>
             <p>
               Welcome to CPU Scheduling Visualizer. By accessing or using our website at 
               cpu-scheduling-visualizer-ribhav.vercel.app (&quot;Service&quot;), you agree to be bound by these 
@@ -55,7 +72,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">2. Description of Service</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">2. Description of Service</h2>
             <p>
               CPU Scheduling Visualizer is a free, online educational tool that allows users to 
               visualize and understand various CPU scheduling algorithms used in operating systems. 
@@ -72,9 +89,9 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">3. Use of Service</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">3. Use of Service</h2>
             
-            <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">3.1 Permitted Use</h3>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">3.1 Permitted Use</h3>
             <p>You may use our Service for:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Personal educational purposes</li>
@@ -84,7 +101,7 @@ export default function TermsAndConditionsPage() {
               <li>Any other lawful, non-commercial purpose</li>
             </ul>
 
-            <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">3.2 Prohibited Use</h3>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">3.2 Prohibited Use</h3>
             <p>You agree NOT to use the Service to:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Violate any applicable laws or regulations</li>
@@ -99,23 +116,23 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">4. Intellectual Property</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">4. Intellectual Property</h2>
             
-            <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">4.1 Our Content</h3>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">4.1 Our Content</h3>
             <p>
               The Service and its original content, features, and functionality are owned by 
               CPU Scheduling Visualizer and are protected by international copyright, trademark, 
               and other intellectual property laws.
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">4.2 Your Rights</h3>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">4.2 Your Rights</h3>
             <p>
               You may use, download, and print content from our Service for personal, non-commercial, 
               educational purposes only. You may share links to our Service and reference our 
               educational content with proper attribution.
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">4.3 Restrictions</h3>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">4.3 Restrictions</h3>
             <p>You may NOT:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Reproduce, distribute, or create derivative works of our Service</li>
@@ -126,7 +143,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">5. User Submissions</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">5. User Submissions</h2>
             <p>
               When you submit feedback, suggestions, or other communications to us through our 
               contact form or feedback system, you grant us a non-exclusive, royalty-free, 
@@ -140,7 +157,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">6. Disclaimer of Warranties</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">6. Disclaimer of Warranties</h2>
             <p>
               THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT ANY WARRANTIES OF ANY KIND, 
               EITHER EXPRESS OR IMPLIED.
@@ -160,7 +177,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">7. Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">7. Limitation of Liability</h2>
             <p>
               TO THE FULLEST EXTENT PERMITTED BY LAW, CPU SCHEDULING VISUALIZER SHALL NOT BE LIABLE 
               FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY 
@@ -176,7 +193,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">8. Indemnification</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">8. Indemnification</h2>
             <p>
               You agree to defend, indemnify, and hold harmless CPU Scheduling Visualizer and its 
               operators from and against any claims, damages, obligations, losses, liabilities, 
@@ -191,7 +208,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">9. Third-Party Links and Services</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">9. Third-Party Links and Services</h2>
             <p>
               Our Service may contain links to third-party websites or services that are not owned 
               or controlled by us. We have no control over, and assume no responsibility for, the 
@@ -204,7 +221,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">10. Modifications to Service</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">10. Modifications to Service</h2>
             <p>
               We reserve the right to modify, suspend, or discontinue the Service (or any part 
               thereof) at any time, with or without notice. We shall not be liable to you or any 
@@ -213,7 +230,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">11. Changes to Terms</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">11. Changes to Terms</h2>
             <p>
               We reserve the right to modify these Terms at any time. We will notify users of any 
               material changes by posting the new Terms on this page and updating the &quot;Last Updated&quot; 
@@ -223,7 +240,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">12. Governing Law</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">12. Governing Law</h2>
             <p>
               These Terms shall be governed by and construed in accordance with applicable laws, 
               without regard to conflict of law principles. Any disputes arising from these Terms 
@@ -232,7 +249,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">13. Severability</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">13. Severability</h2>
             <p>
               If any provision of these Terms is found to be unenforceable or invalid, that 
               provision shall be limited or eliminated to the minimum extent necessary so that 
@@ -241,7 +258,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">14. Entire Agreement</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">14. Entire Agreement</h2>
             <p>
               These Terms, together with our Privacy Policy, constitute the entire agreement between 
               you and CPU Scheduling Visualizer regarding the use of the Service and supersede any 
@@ -250,7 +267,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">15. Contact Us</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">15. Contact Us</h2>
             <p>
               If you have any questions about these Terms, please contact us through our{" "}
               <a href="/contact" className="text-blue-600 hover:underline">

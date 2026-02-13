@@ -121,7 +121,7 @@ export default function FeedbackButton() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed bottom-6 right-6 w-[90vw] max-w-md bg-white rounded-2xl shadow-2xl z-50 overflow-hidden"
+              className="fixed bottom-6 right-6 w-[90vw] max-w-md bg-card rounded-2xl shadow-2xl z-50 overflow-hidden"
             >
               {/* Modal Header */}
               <div className="p-6 pb-4" style={{ background: 'linear-gradient(to right, #12acee, #5df488)' }}>
@@ -146,7 +146,7 @@ export default function FeedbackButton() {
               <div className="p-6 max-h-[60vh] overflow-y-auto">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label htmlFor="feedback-email" className="block text-sm font-medium mb-2 text-gray-700">
+                    <label htmlFor="feedback-email" className="block text-sm font-medium mb-2 text-foreground">
                       Email Address
                     </label>
                     <input
@@ -157,11 +157,11 @@ export default function FeedbackButton() {
                       onChange={handleInputChange}
                       required
                       placeholder="your.email@example.com"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2.5 border border-border bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     />
                   </div>
                   <div>
-                    <label htmlFor="feedback-message" className="block text-sm font-medium mb-2 text-gray-700">
+                    <label htmlFor="feedback-message" className="block text-sm font-medium mb-2 text-foreground">
                       Your Feedback
                     </label>
                     <textarea
@@ -172,7 +172,7 @@ export default function FeedbackButton() {
                       required
                       rows={5}
                       placeholder="Share your suggestions, ideas, or report any issues..."
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                      className="w-full px-4 py-2.5 border border-border bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                     />
                   </div>
                   

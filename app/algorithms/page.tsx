@@ -23,6 +23,8 @@ import autoTable from "jspdf-autotable";
 import Link from "next/link";
 import Footer from "../(components)/footer";
 import FeedbackButton from "../(components)/FeedbackButton";
+import { ThemeToggle } from "../(components)/ThemeToggle";
+import PresetExamples from "../(components)/PresetExamples";
 
 export default function Visualizer() {
   const algorithm = useRecoilValue(algorithmState);
@@ -546,19 +548,22 @@ export default function Visualizer() {
 
   return (
     <>
-      <div className="bg-slate-50 min-h-screen">
+      <div className="bg-background min-h-screen">
         {/* Breadcrumb Navigation */}
-        <div className="max-w-[1280px] mx-auto px-4 py-3 bg-white border-b">
-          <nav className="flex items-center text-sm text-gray-600">
-            <Link href="/" className="hover:text-blue-500 transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-gray-900 font-medium">Visualizer</span>
+        <div className="max-w-[1280px] mx-auto px-4 py-3 bg-card border-b border-border">
+          <nav className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="flex items-center">
+              <Link href="/" className="hover:text-blue-500 transition-colors">Home</Link>
+              <span className="mx-2">›</span>
+              <span className="text-foreground font-medium">Visualizer</span>
+            </div>
+            <ThemeToggle />
           </nav>
         </div>
 
-        <div className="grid grid-cols-12 min-h-screen max-w-[1280px] mx-auto bg-white overflow-hidden">
+        <div className="grid grid-cols-12 min-h-screen max-w-[1280px] mx-auto bg-card overflow-hidden">
           <div className="col-span-12 xl:col-span-4">
-            <div className="pl-5 pt-5 pb-5 bg-blue-50 border-b-2">
+            <div className="pl-5 pt-5 pb-5 bg-blue-50 dark:bg-blue-950/30 border-b-2 border-border">
               <h1 className="lg:text-[22px] xl:text-[25px] font-bold">
                 <span className="cpu_schedular">CPU</span> Scheduling Visualizer
               </h1>
@@ -570,6 +575,7 @@ export default function Visualizer() {
                   <SelectAlgorithm />
                   <ProcessInserter />
                 </div>
+                <PresetExamples />
                 <div className="p-5">
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button onClick={handleSubmit} className="w-full sm:w-auto">Submit</Button>
@@ -583,7 +589,7 @@ export default function Visualizer() {
             </div>
           </div>
 
-          <div className="col-span-12 xl:col-span-8 bg-slate-50">
+          <div className="col-span-12 xl:col-span-8 bg-muted/30">
             <OutputProcessTable />
             <br />
             <GanttChart />
@@ -601,12 +607,12 @@ export default function Visualizer() {
         </div>
 
         {/* Educational Note Below Visualizer */}
-        <div className="max-w-[1280px] mx-auto px-4 py-8 bg-white border-t">
+        <div className="max-w-[1280px] mx-auto px-4 py-8 bg-card border-t border-border">
           <div className="prose max-w-none">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Understanding Your Results</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+            <h3 className="text-xl font-bold text-foreground mb-4">Understanding Your Results</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-muted-foreground">
               <div>
-                <h4 className="font-semibold mb-2">📊 Gantt Chart</h4>
+                <h4 className="font-semibold mb-2 text-foreground">📊 Gantt Chart</h4>
                 <p className="text-sm">
                   The Gantt chart displays the execution timeline of processes. Each block represents a process 
                   running on the CPU, with the process ID shown inside and timestamps below indicating when 
@@ -614,7 +620,7 @@ export default function Visualizer() {
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">📈 Performance Metrics</h4>
+                <h4 className="font-semibold mb-2 text-foreground">📈 Performance Metrics</h4>
                 <p className="text-sm">
                   <strong>Turnaround Time</strong> = Completion Time - Arrival Time<br/>
                   <strong>Waiting Time</strong> = Turnaround Time - Burst Time<br/>

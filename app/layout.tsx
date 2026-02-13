@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import RecoilContextProvider from "./(lib)/recoilContextProvider";
 import GoogleAnalytics from "./(components)/GoogleAnalytics";
+import { ThemeProvider } from "./(components)/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -468,7 +469,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <GoogleAnalytics />
       </head>
@@ -477,9 +478,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <RecoilContextProvider>
-          {children}
-        </RecoilContextProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <RecoilContextProvider>
+            {children}
+          </RecoilContextProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

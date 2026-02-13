@@ -19,6 +19,30 @@ module.exports = {
       changefreq: 'weekly',
       priority: 0.95,
       lastmod: new Date().toISOString(),
+    },
+    {
+      loc: '/about',
+      changefreq: 'monthly',
+      priority: 0.7,
+      lastmod: new Date().toISOString(),
+    },
+    {
+      loc: '/contact',
+      changefreq: 'monthly',
+      priority: 0.6,
+      lastmod: new Date().toISOString(),
+    },
+    {
+      loc: '/privacy-policy',
+      changefreq: 'yearly',
+      priority: 0.3,
+      lastmod: new Date().toISOString(),
+    },
+    {
+      loc: '/terms-and-conditions',
+      changefreq: 'yearly',
+      priority: 0.3,
+      lastmod: new Date().toISOString(),
     }
   ],
   transform: async (config, path) => {

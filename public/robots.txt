@@ -5,6 +5,10 @@
 User-agent: *
 Allow: /
 Allow: /algorithms
+Allow: /about
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms-and-conditions
 Disallow: /api/
 Disallow: /_next/static/
 Disallow: /admin/

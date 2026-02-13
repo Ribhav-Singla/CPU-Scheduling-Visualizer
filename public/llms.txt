@@ -13,22 +13,35 @@ CPU Scheduling Visualizer is an open-source web application that helps students,
 - **SRTF (Shortest Remaining Time First)**: Preemptive version of SJF
 - **Round Robin**: Time-sharing algorithm with configurable time quantum
 - **Priority Scheduling**: Both preemptive and non-preemptive variants
+- **Dark Mode / Light Mode**: Full theme toggle with system preference detection
+- **Preset Examples**: Curated scenarios including FCFS demo, convoy effect, starvation, and quantum-size impact
 
 ## Capabilities
 
 - Interactive Gantt chart generation
 - Automatic calculation of waiting time and turnaround time
-- Algorithm performance comparison
-- PDF export of results
+- Algorithm performance comparison (line chart)
+- PDF export of results (input table, output table, Gantt chart, comparison chart)
+- Preset example inputs for quick learning (convoy effect, starvation, quantum impact)
 - Mobile-responsive design
+- Dark mode support
+
+## Metrics Calculated
+
+- Completion Time per process
+- Turnaround Time (Completion Time − Arrival Time)
+- Waiting Time (Turnaround Time − Burst Time)
+- Average Turnaround Time
+- Average Waiting Time
 
 ## Target Audience
 
-- Computer Science students
+- Computer Science students studying Operating Systems
 - GATE exam aspirants
 - Software engineering interview preparation
-- Educators and professors
-- Self-learners
+- Educators and professors teaching OS courses
+- Self-learners exploring computer science fundamentals
+- Researchers comparing scheduling algorithm performance
 
 ## Pages
 
@@ -41,12 +54,17 @@ CPU Scheduling Visualizer is an open-source web application that helps students,
 
 ## Technical Details
 
-- Built with Next.js 14
-- Uses React and TypeScript
-- Styled with Tailwind CSS
+- Built with Next.js 14 (App Router)
+- Uses React 18 and TypeScript
+- Styled with Tailwind CSS and shadcn/ui components
+- Dark mode via next-themes
 - Animations powered by Framer Motion
 - State management with Recoil
+- Charts with Recharts
+- PDF generation with jsPDF + html2canvas
 
 ## Contact
+
+Use the feedback button on the website to reach the team.
 
 For feedback or inquiries, please use the contact form on our website.

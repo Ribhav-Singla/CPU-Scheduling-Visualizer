@@ -25,15 +25,15 @@ function OutputProcessTable() {
     // <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl pl-5 pt-5 pr-5 2xl:pr-0">
     <div className="pt-5 px-5">
       {processes.length === 0 ? (
-        <div className="border border-gray-200 rounded-lg p-6 text-center">
+        <div className="border border-border rounded-lg p-6 text-center">
           <div className="text-4xl mb-3">📋</div>
-          <h3 className="font-semibold text-gray-800 mb-2">Process Results Table</h3>
-          <p className="text-gray-600 text-sm max-w-md mx-auto">
+          <h3 className="font-semibold text-foreground mb-2">Process Results Table</h3>
+          <p className="text-muted-foreground text-sm max-w-md mx-auto">
             This table will display detailed scheduling results including completion time, turnaround time, 
             and waiting time for each process. These metrics help you understand how efficiently the 
             CPU handles different processes under the selected scheduling algorithm.
           </p>
-          <div className="mt-4 p-3 bg-white rounded border border-gray-200 text-xs text-gray-500">
+          <div className="mt-4 p-3 bg-card rounded border border-border text-xs text-muted-foreground">
             <strong>Quick Reference:</strong><br/>
             Turnaround Time = Completion Time − Arrival Time<br/>
             Waiting Time = Turnaround Time − Burst Time
